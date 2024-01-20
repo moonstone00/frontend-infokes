@@ -1,0 +1,20 @@
+axios
+Login (DONE)
+PasienFormNot / pendaftaranPasien (DONE)
+pendaftaranProfile / pendaftaranProfile (DONE)
+DokterAntrian / dokterAntrian (DONE)
+AntrianPoli / AntrianPoli (DONE)
+TreatmentGejalaDiagnosa / treatment (D0NE)
+PendaftaranPoli / PendaftaranPoli (DONE)
+PendaftaranPasien / searchNik (DONE)
+RegistrasiPegawaiBaru / registrasiFormulirPegawai (DONE)
+
+location
+FormulirPegawaiBaru
+AdminManager
+
+pada cancel jangan menggunakan reload karena mengalami bug
+
+
+Jadi gini, backend akan menggunakan dua table 
+table yang pertama untuk dokter dan table kedua untuk pasien

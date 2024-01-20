@@ -1,0 +1,86 @@
+[
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Setiyoko",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Ghifani",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Ikhsan",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Arnold",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Helmi",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Bambang",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Sukono",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Patih",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Mawar",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Deby",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Faizal",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    },
+    {
+        "ID" : "1",
+        "tanggal" : "21/22/2023",
+        "dokter" : "Dr.Salah",
+        "poli" : "Jantung",
+        "diagnosa" : "Ner"
+    }
+]

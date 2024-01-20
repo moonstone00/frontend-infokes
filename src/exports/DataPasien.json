@@ -1,0 +1,32 @@
+[
+    {
+        "antrian" : 1,
+        "namaPasien" : "Dadang",
+        "nip" : "98498389437589",
+        "status" : "selesai"
+    },
+    {
+        "antrian" : 2,
+        "namaPasien" : "Asep",
+        "nip" : "98498389437589",
+        "status" : "selesai"
+    },
+    {
+        "antrian" : 3,
+        "namaPasien" : "Tono",
+        "nip" : "98498389437589",
+        "status" : "Periksa"
+    },
+    {
+        "antrian" : 4,
+        "namaPasien" : "Titin",
+        "nip" : "98498389437589",
+        "status" : "Periksa"
+    },
+    {
+        "antrian" : 5,
+        "namaPasien" : "Dewi",
+        "nip" : "98498389437589",
+        "status" : "Periksa"
+    }
+]
