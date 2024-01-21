@@ -1,7 +1,24 @@
 import gundar from "../assets/gundar.png"
 import Footer from './Footer'
+import { React, useEffect } from 'react'
+import { axios } from '../utils/axios/config.js'
 
 export default function ProfileDoktor() {
+
+    // const [pasienList, setPasienList] = useState([])
+    // const [idPasien, setIdPasien] = useState(null);
+    
+    useEffect(() => {
+        const id = localStorage.getItem('id');
+        // You need to use the `id` from the params in the API request
+        axios.get(`/profile/${id}`).then((result) => {
+        //   setPasienList(result.data.pasien);
+          console.log(result.data);
+        //   setIdPasien(result.data.id);
+        }).catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+      }, []);
 
     return (
         <>
