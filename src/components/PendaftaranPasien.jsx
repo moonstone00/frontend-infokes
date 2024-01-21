@@ -1,44 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import gundar from "../assets/gundar.png"
 import Footer from './Footer'
-import axios from 'axios'
+// import { axios } from '../utils/axios/config.js'
+// import { useParams } from 'react-router-dom';
 import Modals from '../utils/Modals'
 
 export default function PendaftaranPasien() {
 
-    const [dataNIP, setDataNIP] = useState([]);
+    // const [dataNIP, setDataNIP] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [isOpenModalCart, setIsOpenModalCart] = useState(false)
 
 
     // masih error karena nik
 
-    const nik = localStorage.getItem("nik")
+    // const nik = localStorage.getItem("nik")
     
-    useEffect(() => {
-        axios({
-            method: "GET",
-            url: `http://localhost:3200/api/v1/resources/pasien/${nik}`
-        }).then((result) => {
-            console.log(result)
-            setDataNIP(result)
-            // console.log(result.data.pasien)
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios({
+    //         method: "GET",
+    //         url: `http://localhost:3200/api/v1/resources/pasien/${nik}`
+    //     }).then((result) => {
+    //         console.log(result)
+    //         setDataNIP(result)
+    //         // console.log(result.data.pasien)
+    //     })
+    // }, [])
 
     const handleSearchNIP = (event) => {
         event.preventDefault();
-        // Cek apakah searchValue ada di dalam dataNIP
-        const foundData = dataNIP.find(pasien => pasien.nip === searchValue);
-        console.log(foundData)
-    
-        if (foundData) {
-            setIsOpenModalCart(false)
-            window.location.replace('/patientList')
+        window.location.replace(`/patientList/${searchValue}`)
 
-        } else {
-            setIsOpenModalCart(true)
-        }
+        // Cek apakah searchValue ada di dalam dataNIP
+        // const foundData = dataNIP.find(pasien => pasien.nip === searchValue);
+        // console.log(foundData)
+    
+        // if (foundData) {
+        //     setIsOpenModalCart(false)
+            // window.location.replace('/patientList')
+
+        // } else {
+        //     setIsOpenModalCart(true)
+        // }
     };
 
     const handleCancelModal = () => {
