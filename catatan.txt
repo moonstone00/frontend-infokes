@@ -9,6 +9,10 @@ PendaftaranPoli / PendaftaranPoli (DONE)
 PendaftaranPasien / searchNik (DONE)
 RegistrasiPegawaiBaru / registrasiFormulirPegawai (DONE)
 
+New 
+RegisterStaffPendaftaran / registerStaffPendaftaran (DONE)
+RegisterAdmin / registerAdmin (DONE)
+
 location
 FormulirPegawaiBaru
 AdminManager

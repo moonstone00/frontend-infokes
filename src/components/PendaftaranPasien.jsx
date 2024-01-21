@@ -4,7 +4,7 @@ import Footer from './Footer'
 import axios from 'axios'
 import Modals from '../utils/Modals'
 
-export default function PendaftaranPasien() {
+export default function PendaftaranPasien({props}) {
 
     const [dataNIP, setDataNIP] = useState([]);
     const [searchValue, setSearchValue] = useState('');
@@ -12,16 +12,14 @@ export default function PendaftaranPasien() {
 
 
     // masih error karena nik
-
-    const nik = localStorage.getItem("nik")
     
     useEffect(() => {
         axios({
             method: "GET",
-            url: `http://localhost:3200/api/v1/resources/pasien/${nik}`
+            url: `http://localhost:3200/api/v1/resources/pasien/:nik`
         }).then((result) => {
             console.log(result)
-            setDataNIP(result)
+            // setDataNIP(result)
             // console.log(result.data.pasien)
         })
     }, [])

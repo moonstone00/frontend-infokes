@@ -14,9 +14,9 @@ export default function PasienForm() {
       // }
       axios({
         method: 'GET',
-        url: "http://localhost:3200/pasien"
+        url: "http://localhost:3200/api/v1/resources/poli"
       }).then((result) => {
-        setPasienList(result.data.pasien)
+        console.log(result)
       })
     }, [])
     

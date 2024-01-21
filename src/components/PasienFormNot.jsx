@@ -26,12 +26,15 @@ export default function PasienFormNot() {
             url: "http://localhost:3200/api/v1/resources/pasien/tambah",
             data: requestingData
         }).then((result) => {
-            console.log(result)
-            // console.log(result.config.data.nik)
+            // console.log(result.config.data)
+            const hai = JSON.parse(result.config.data)
+            console.log(hai)
+            console.log(hai.nik)
             window.localStorage.setItem("nik", requestingData.nik)
             window.location.replace("/pendaftaranPoli")
         })
     }
+
 
     return (
         <>
