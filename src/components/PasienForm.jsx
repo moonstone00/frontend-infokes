@@ -2,26 +2,28 @@ import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
 import { React, useEffect, useState } from 'react'
 import imageGundar from '../assets/gundar.png'
 import Footer from './Footer'
-import axios from "axios"
-
+import { axios } from '../utils/axios/config.js'
+import { useParams } from 'react-router-dom';
 export default function PasienForm() {
 
     const [pasienList, setPasienList] = useState([])
+    const [idPasien, setIdPasien] = useState(null);
+    const { id } = useParams();
     
     useEffect(() => {
-      // if(!localStorage.getItem("nama") && !localStorage.getItem("nip")) {
-      //   window.Location.replace('/login')
-      // }
-      axios({
-        method: 'GET',
-        url: "http://localhost:3200/api/v1/resources/poli"
-      }).then((result) => {
-        console.log(result)
-      })
-    }, [])
+      // You need to use the `id` from the params in the API request
+      axios.get(`/pasien/${id}`).then((result) => {
+        setPasienList(result.data.pasien);
+        console.log(result.data);
+        setIdPasien(result.data.id);
+      }).catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    }, [id]);
     
     const handleRegister = () => {
-      window.location.replace('/pendaftaranPoli')
+
+      window.location.replace(`/pendaftaranPasien/${idPasien}`)
     }
     
 
