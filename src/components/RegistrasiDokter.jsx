@@ -1,17 +1,26 @@
+import { useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
 import axios from 'axios'
 
 export default function RegistrasiDokter() {
 
-    // const [poli, setPoli] = useState([])
+    const [poli, setPoli] = useState([])
+    const [selectedPoli, setSelectedPoli] = useState("")
+    const toast = useToast()
 
-    // useEffect(() => {
-    //     axios.get("/").then((result) => {
-    //         console.log(result)
-    //         setPoli(result)
-    //     })
-    // }, [])
+    useEffect(() => {
+        axios.get("/").then((result) => {
+            console.log(result)
+            setPoli(result)
+        })
+    }, [])
+
+    const handlePoliChange = (event) => {
+        const selectedValue = event.target.value
+        console.log(`Poli yang dipilih: ${selectedValue}`);
+        setSelectedPoli(selectedValue);
+    }
 
     const handleRegisterAdmin = (event) => {
         event.preventDefault()
@@ -28,20 +37,31 @@ export default function RegistrasiDokter() {
             gender,
             alamat,
             password,
+            selectedPoli
         }
-        axios({
-            method: "POST",
-            url: "http://localhost:3200/api/v1/registration/dokter",
-            data: requestingData
-        }).then((result) => {
-            window.localStorage.setItem("nama", result.data.users.nama)
-            window.localStorage.setItem("gender", result.data.users.gender)
-            window.localStorage.setItem("alamat", result.data.users.alamat)
-            window.localStorage.setItem("tanggalLahir", result.data.users.tanggal_lahir)
 
-            window.location.replace('/')
-        })
-        console.log(requestingData)
+        if(selectedPoli === 'jantung' || selectedPoli === 'kepala') {
+            // axios({
+            //     method: "POST",
+            //     url: "http://localhost:3200/api/v1/registration/dokter",
+            //     data: requestingData
+            // }).then((result) => {
+            //     window.localStorage.setItem("nama", result.data.users.nama)
+            //     window.localStorage.setItem("gender", result.data.users.gender)
+            //     window.localStorage.setItem("alamat", result.data.users.alamat)
+            //     window.localStorage.setItem("tanggalLahir", result.data.users.tanggal_lahir)
+    
+            //     window.location.replace('/')
+            // })
+            console.log(requestingData)
+        } else {
+            toast({
+                title: "Pilih Poli!",
+                duration: 2000,
+                status: "error",
+            })
+        }
+
     }
 
     const handleKembali = () => {
@@ -50,10 +70,10 @@ export default function RegistrasiDokter() {
 
     return (
         <div>
-            <div className='flex justify-center items-center min-h-screen flex-col'>
+            <div className='flex flex-col justify-center items-center min-h-screen my-12'>
                 {/* <img className='w-56 mb-11' /> */}
 
-                <div className='justify-center items-center w-[711px] h-[560px] px-11 shadow-[0_3px_5px_5px_rgba(0,0,0,0.2)] '>
+                <div className='justify-center items-center w-[711px] h-[730px] px-11 shadow-[0_3px_5px_5px_rgba(0,0,0,0.2)] '>
                     <form onSubmit={handleRegisterAdmin} className="max-w-md mx-auto translate[-50%] top-[15%] relative">
                         <p className='mb-5 text-[32px] font-medium'>Register Staff Pendaftaran</p>
 
@@ -89,27 +109,29 @@ export default function RegistrasiDokter() {
                                 </div>
                             </div>
 
-                            <div className='flex gap-8 mb-8'>
+                            <div className='flex gap-8'>
                                 <div className="relative z-0 w-full mb-5 group">
                                     <input type="text" name="spesialisasi" id="spesialisasi" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Poli ID</label>
                                 </div>
                             </div>
 
-                            {/* <label for="poli" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Poli</label>
-                            <select id="poli" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Pilih Poli</option>
-                                {
+                            <label for="poli" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Poli</label>
+                            <select required id="poli" onChange={handlePoliChange} value={selectedPoli} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mb-8 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option>Pilih Poli</option>
+                                <option value="jantung">Jantung</option>
+                                <option value="kepala">Kepala</option>
+                                {/* {
                                     poli.map((choosePoli, index) => {
-
                                         const {namaPoli, id} = choosePoli
 
                                         return (
-                                            <option>{namaPoli}</option>
+                                            <option value={namaPoli}>{namaPoli}</option>
                                         )
                                     })
                                 }
-                            </select> */}
+                                 */}
+                            </select>
 
                             <div className='flex gap-8'>
                                 <div className="flex flex-col justify-center w-full mb-5">

@@ -18,3 +18,7 @@ pada cancel jangan menggunakan reload karena mengalami bug
 
 Jadi gini, backend akan menggunakan dua table 
 table yang pertama untuk dokter dan table kedua untuk pasien
+
+
+error
+PendaftaranPasien / searchNik masih error karena belum bisa nik nya.

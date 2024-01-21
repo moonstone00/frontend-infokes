@@ -27,6 +27,8 @@ import RegistrasiDokter from './components/RegistrasiDokter';
 
 
 function App() {
+
+
   return (
     <>
       
@@ -41,7 +43,7 @@ function App() {
           <Route path='/patientList' element={<PasienForm />} />
           <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
           <Route path='/pendaftaranPoli' element={<PendaftaranPoli/>} />
-          <Route path='/pendaftaranProfile' element={<PendaftaranProfile/>} />
+          <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
           <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
           <Route path='/profileDoktor' element={<ProfileDoktor/>} />
@@ -53,6 +55,7 @@ function App() {
           <Route path='/daftarPegawai' element={<DaftarPegawai/>} />
           <Route path='/dataPoli' element={<DataPoli/>} />
           <Route path='/monitorKegiatan' element={<MonitorKegiatan/>} />
+          <Route path='*' element={<Login/>} />
         </Routes>
       </Router>
     </>

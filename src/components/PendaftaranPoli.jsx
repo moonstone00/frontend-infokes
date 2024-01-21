@@ -3,7 +3,14 @@ import gundar from "../assets/gundar.png"
 import Footer from './Footer'
 import axios from 'axios'
 
-export default function pendaftaranPoli() {
+export default function PendaftaranPoli() {
+
+    useEffect(() => {
+    if(!localStorage.getItem("nik")) {
+        window.location.replace('/pendaftaranPasien')
+    }
+  }, []);
+
 
     const userRegister = (event) => {
         event.preventDefault()
@@ -17,11 +24,10 @@ export default function pendaftaranPoli() {
 
         axios({
             method: "POST",
-            url: "nama localhost nya....",
+            url: "http://localhost:3200/api/v1/resources/pasien/tambah",
             data: requestingData
         }).then((result) => {
-            window.localStorage.setItem('poli', result.data.users.poli)
-            window.localStorage.setItem('biaya', result.data.users.biaya)
+            console.log(result);
             window.location.replace('/searchNik')
         })
     }

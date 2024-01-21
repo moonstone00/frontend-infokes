@@ -1,6 +1,13 @@
 import React from 'react'
 
 export default function Footer() {
+
+    const id = localStorage.getItem("id")
+
+    const changeProfile = () => {
+        window.location.replace(`pendaftaranProfile/${id}`)
+    }
+
   return (
     <footer className="bg-[#bedcbc] shadow">
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -12,7 +19,7 @@ export default function Footer() {
                 </div>
                 <div className="items-center text-sm text-black">
                     <div>
-                        <p>Profile</p>
+                        <p onClick={changeProfile} >Profile</p>
                     </div>
                     <div className='my-4'>
                         <p>Riwayat Kunjungan</p>

@@ -10,14 +10,19 @@ export default function PendaftaranPasien() {
     const [searchValue, setSearchValue] = useState('');
     const [isOpenModalCart, setIsOpenModalCart] = useState(false)
 
+
+    // masih error karena nik
+
+    const nik = localStorage.getItem("nik")
     
     useEffect(() => {
         axios({
             method: "GET",
-            url: "http://localhost:3200/pasien"
+            url: `http://localhost:3200/api/v1/resources/pasien/${nik}`
         }).then((result) => {
-            setDataNIP(result.data.pasien)
-            console.log(result.data.pasien)
+            console.log(result)
+            setDataNIP(result)
+            // console.log(result.data.pasien)
         })
     }, [])
 

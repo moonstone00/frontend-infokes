@@ -11,6 +11,8 @@
 # production
 /build
 
+/catatan.txt
+
 # misc
 .DS_Store
 .env.local
