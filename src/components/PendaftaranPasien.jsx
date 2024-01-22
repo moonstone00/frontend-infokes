@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import gundar from "../assets/gundar.png"
 import Footer from './Footer'
-// import { axios } from '../utils/axios/config.js'
+import { axios } from '../utils/axios/config.js'
 // import { useParams } from 'react-router-dom';
 import Modals from '../utils/Modals'
 
@@ -14,10 +14,7 @@ export default function PendaftaranPasien({props}) {
 
     
     useEffect(() => {
-        axios({
-            method: "GET",
-            url: `http://localhost:3200/api/v1/resources/pasien/:nik`
-        }).then((result) => {
+        axios.get(`/resources/pasien/:nik`).then((result) => {
             console.log(result)
             // setDataNIP(result)
             // console.log(result.data.pasien)

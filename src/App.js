@@ -21,15 +21,9 @@ import './App.css';
 import RegisterAdmin from './components/RegisterAdmin';
 import RegisterStaffPendaftaran from './components/RegistrasiStaffPendaftaran';
 import RegistrasiDokter from './components/RegistrasiDokter';
-<<<<<<< HEAD
-import KickPage from './components/KickPage';
-=======
+
 import { useEffect, useState } from 'react';
 import PageNotFound from './utils/PageNotFound';
->>>>>>> ec56855998a16e9dbcadaa72ea31a9394c02c43b
-
-
-
 
 
 function App() {
@@ -48,39 +42,11 @@ function App() {
     if (localStorage.getItem('role') === "dokter") {
       setIsLoginDokter(true);
     }
-  })
+  }, []); 
 
   return (
     <>
       <Router>
-<<<<<<< HEAD
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/registerAdmin' element={<RegisterAdmin />} />
-          <Route path='/registerStaffPendaftaran' element={<RegisterStaffPendaftaran />} />
-          <Route path='/registrasiDokter' element={<RegistrasiDokter />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/searchNik' element={<PendaftaranPasien/>} />
-          <Route path='/patientList/:id' element={<PasienForm />} />
-          <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
-          <Route path='/pendaftaranPoli/:id' element={<PendaftaranPoli/>} />
-          <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
-          <Route path='/dokterAntrian' element={<DokterAntrian/>} />
-          <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
-          <Route path='/profileDoktor' element={<ProfileDoktor/>} />
-          <Route path='/antrianPoli' element={<AntrianPoli/>} />
-          <Route path='/adminManager' element={<AdminManager/>} />
-          <Route path='/updateDataDokter' element={<EditDataDokter/>} />
-          <Route path='/tambahFormulirPegawai' element={<FormulirPegawaiBaru/>} />
-          <Route path='/registrasiFormulirPegawai' element={<RegistrasiPegawaiBaru/>} />
-          <Route path='/daftarPegawai' element={<DaftarPegawai/>} />
-          <Route path='/dataPoli' element={<DataPoli/>} />
-          <Route path='/monitorKegiatan' element={<MonitorKegiatan/>} />
-          <Route path='*' element={<Login/>} />
-          <Route path='/kickPage' element={<KickPage/>} />
-        </Routes>
-      </Router>
-=======
 
           {
             isLoginAdmin ? 
@@ -135,7 +101,6 @@ function App() {
             <Route path='/login' element={<Login />} />
           </Routes>
       </Router>  
->>>>>>> ec56855998a16e9dbcadaa72ea31a9394c02c43b
     </>
   );
 }

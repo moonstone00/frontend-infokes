@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 import { Center, Container, HStack, Spinner } from '@chakra-ui/react'
-import Footer from './FooterAdmin'
 import { axios } from '../utils/axios/config.js'
 import imageGundar from "../assets/gundar.png"
 export default function MonitorKegiatan() {
@@ -13,9 +12,9 @@ export default function MonitorKegiatan() {
     const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
-        axios.get("/statistik").then((result) => {
-            console.log(result)
-        })
+        // axios.get("/statistik").then((result) => {
+        //     console.log(result)
+        // })
 
         setTimeout(() => {
             setIsLoading(false)
@@ -219,7 +218,6 @@ export default function MonitorKegiatan() {
                     </div>
                 </div>
             </section>
-            <Footer />
         </>
     )
 }

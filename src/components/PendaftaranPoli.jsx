@@ -37,7 +37,7 @@ export default function PendaftaranPoli() {
         <>
             <section>
                 <div className='flex justify-center items-center min-h-screen flex-col p-12'>
-                    <img  src={gundar} className='w-56 mb-8'/>
+                    <img  src={gundar} alt="gundar" className='w-56 mb-8'/>
                     <h1 className='text-[#388E3C] text-[48px] font-semibold mb-2'>Pendaftaran</h1>
 
                     <div className='w-[511px] px-11 p-8 mt-[40px] shadow-[0_3px_5px_5px_rgba(0,0,0,0.2)] '>

@@ -7,7 +7,7 @@ export default function PageNotFound() {
     <section>
         <Container>
             <Center h='100vh'>
-                <img src={pageNotFound} />
+                <img src={pageNotFound} alt="page not found" />
             </Center>
         </Container>
     </section>
