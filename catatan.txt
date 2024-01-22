@@ -26,3 +26,13 @@ table yang pertama untuk dokter dan table kedua untuk pasien
 
 error
 PendaftaranPasien / searchNik masih error karena belum bisa nik nya.
+
+
+Tugas
+1. tambahkan data nya terlebih dahulu pada PendaftaranPasien dan pendaftaranPoli
+
+Fitur Loading / Latency
+PasienForm / patienList (DONE)
+
+
+pendaftaranProfile

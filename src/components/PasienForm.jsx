@@ -1,4 +1,5 @@
 import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
+import { Container, Center, Spinner } from '@chakra-ui/react'
 import { React, useEffect, useState } from 'react'
 import imageGundar from '../assets/gundar.png'
 import Footer from './Footer'
@@ -6,24 +7,28 @@ import { axios } from '../utils/axios/config.js'
 import { useParams } from 'react-router-dom';
 export default function PasienForm() {
 
+    const [isLoading, setIsLoading] = useState(true)
     const [pasienList, setPasienList] = useState([])
     const [idPasien, setIdPasien] = useState(null);
     const { id } = useParams();
     
     useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false)
+        axios.get(`/pasien/${id}`).then((result) => {
+          // setPasienList(result.data.pasien);
+          console.log('ini adalah result', result);
+          setIdPasien(result.data.id);
+        }).catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+      }, 2000);
       // You need to use the `id` from the params in the API request
-      axios.get(`/pasien/${id}`).then((result) => {
-        setPasienList(result.data.pasien);
-        console.log(result.data);
-        setIdPasien(result.data.id);
-      }).catch((error) => {
-        console.error('Error fetching data:', error);
-      });
     }, [id]);
     
     const handleRegister = () => {
 
-      window.location.replace(`/pendaftaranPasien/${idPasien}`)
+    window.location.replace(`/pendaftaranPasien/${idPasien}`)
     }
     
 
@@ -70,6 +75,24 @@ export default function PasienForm() {
     return (
 
       <>
+
+        {
+          isLoading
+          ?
+          <Container >
+          <Center h='100vh'>
+          <Spinner
+              thickness='4px'
+              speed='0.65s'
+              emptyColor='gray.200'
+              color='blue.500'
+              size='xl'
+              />
+          </Center>
+          </Container>
+          :
+          null
+        }
       
           <section className='w-full min-h-screen bg-[#fafff6] p-12'>
             <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>

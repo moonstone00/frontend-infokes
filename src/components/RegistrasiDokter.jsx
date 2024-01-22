@@ -40,19 +40,22 @@ export default function RegistrasiDokter() {
             selectedPoli
         }
 
-        if(selectedPoli === 'jantung' || selectedPoli === 'kepala') {
-            // axios({
-            //     method: "POST",
-            //     url: "http://localhost:3200/api/v1/registration/dokter",
-            //     data: requestingData
-            // }).then((result) => {
-            //     window.localStorage.setItem("nama", result.data.users.nama)
-            //     window.localStorage.setItem("gender", result.data.users.gender)
-            //     window.localStorage.setItem("alamat", result.data.users.alamat)
-            //     window.localStorage.setItem("tanggalLahir", result.data.users.tanggal_lahir)
+        if(selectedPoli === 'Jantung' || selectedPoli === 'Umum' || selectedPoli === 'Penyakit Dalam') {
+            axios({
+                method: "POST",
+                url: "http://localhost:3200/api/v1/resources/registration/dokter",
+                data: requestingData
+            }).then((result) => {
+                const resutlParse = JSON.parse(result.config.data)
+                console.log(resutlParse)
+                window.localStorage.setItem("nama", resutlParse.nama)
+                window.localStorage.setItem("tanggal_lahir", resutlParse.tanggal_lahir)
+                window.localStorage.setItem("gender", resutlParse.gender)
+                window.localStorage.setItem("selectedPoli", resutlParse.selectedPoli)
+                window.localStorage.setItem("role", "dokter")
     
-            //     window.location.replace('/')
-            // })
+                window.location.replace('/antrianPoli')
+            })
             console.log(requestingData)
         } else {
             toast({
@@ -75,7 +78,7 @@ export default function RegistrasiDokter() {
 
                 <div className='justify-center items-center w-[711px] h-[730px] px-11 shadow-[0_3px_5px_5px_rgba(0,0,0,0.2)] '>
                     <form onSubmit={handleRegisterAdmin} className="max-w-md mx-auto translate[-50%] top-[15%] relative">
-                        <p className='mb-5 text-[32px] font-medium'>Register Staff Pendaftaran</p>
+                        <p className='mb-5 text-[32px] font-medium'>Register Dokter</p>
 
                         <div className='flex flex-col'>
 
@@ -119,8 +122,9 @@ export default function RegistrasiDokter() {
                             <label for="poli" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Poli</label>
                             <select required id="poli" onChange={handlePoliChange} value={selectedPoli} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg mb-8 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option>Pilih Poli</option>
-                                <option value="jantung">Jantung</option>
-                                <option value="kepala">Kepala</option>
+                                <option value="Umum">Umum</option>
+                                <option value="Jantung">Jantung</option>
+                                <option value="Penyakit Dalam">Penyakit Dalam</option>
                                 {/* {
                                     poli.map((choosePoli, index) => {
                                         const {namaPoli, id} = choosePoli

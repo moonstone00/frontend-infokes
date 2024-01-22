@@ -1,12 +1,13 @@
 import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
 import { React, useEffect, useState } from 'react'
+import { Container, Center, Spinner } from '@chakra-ui/react'
 import imageGundar from '../assets/gundar.png'
 import Footer from './Footer'
 import axios from "axios"
 
 export default function PasienForm() {
 
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [antrianList, setAntrianList] = useState([])
     const [searchTitle, setSearchTitle] = useState("")
 
@@ -15,12 +16,12 @@ export default function PasienForm() {
 
     useEffect(() => {
         const loadPosts = async () => {
-            setLoading(true) 
+            setIsLoading(true) 
             const response = await axios.get(
                 "http://localhost:3200/pasien"
             )
             setAntrianList(response.data.pasien)
-            setLoading(false)
+            setIsLoading(false)
         }
         loadPosts()
     }, [])
@@ -112,35 +113,34 @@ export default function PasienForm() {
                         </tr>
                         </thead>
                     <tbody>
-                    {loading ? (
-        <h4>Loading...</h4>
-    ) : (
-        records
-            .filter((value) => {
-                if (searchTitle === "") {
-                    return true;
-                } else if (value.status.toLowerCase().includes(searchTitle.toLocaleLowerCase())) {
-                    return true;
-                }
-                return false;
-            })
-            .map((data, index) => {
+                        {
+                            records
+                                .filter((value) => {
+                                    if (searchTitle === "") {
+                                        return true;
+                                    } else if (value.status.toLowerCase().includes(searchTitle.toLocaleLowerCase())) {
+                                        return true;
+                                    }
+                                    return false;
+                                })
+                                .map((data, index) => {
 
-                const {no, namaPasien, tanggalKunjungan, diagnosa} = data
+                                    const {no, namaPasien, tanggalKunjungan, diagnosa} = data
 
-                return (
-                    <tr
-                        key={index}
-                        className={index % 2 === 0 ? "bg-white text-black font-semibold" : "bg-[#dedede] text-black font-semibold"}
-                    >
-                        <td className="py-4 px-6">{no}</td>
-                        <td className="py-4 px-6">{namaPasien}</td>
-                        <td className="py-4 px-6">{tanggalKunjungan}</td>
-                        <td className="py-4 px-6">{diagnosa}</td>
-                    </tr>
-                );
-            })
-    )}
+                                    return (
+                                        <tr
+                                            key={index}
+                                            className={index % 2 === 0 ? "bg-white text-black font-semibold" : "bg-[#dedede] text-black font-semibold"}
+                                        >
+                                            <td className="py-4 px-6">{no}</td>
+                                            <td className="py-4 px-6">{namaPasien}</td>
+                                            <td className="py-4 px-6">{tanggalKunjungan}</td>
+                                            <td className="py-4 px-6">{diagnosa}</td>
+                                        </tr>
+                                    );
+                                }
+                        )}
+                    
                     </tbody>
                 </table>
                 </div>
