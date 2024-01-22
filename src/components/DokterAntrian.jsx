@@ -1,13 +1,11 @@
 import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
 import { React, useEffect, useState } from 'react'
-import { Container, Center, Spinner } from '@chakra-ui/react'
 import imageGundar from '../assets/gundar.png'
 import Footer from './Footer'
 import axios from "axios"
 
 export default function PasienForm() {
 
-    const [isLoading, setIsLoading] = useState(false)
     const [antrianList, setAntrianList] = useState([])
     const [searchTitle, setSearchTitle] = useState("")
 
@@ -16,12 +14,13 @@ export default function PasienForm() {
 
     useEffect(() => {
         const loadPosts = async () => {
-            setIsLoading(true) 
-            const response = await axios.get(
-                "http://localhost:3200/pasien"
-            )
-            setAntrianList(response.data.pasien)
-            setIsLoading(false)
+
+            // TEMPATKAN AXIOS NYA DISINI
+
+            // const response = await axios.get(
+            //     "http://localhost:3200/pasien"
+            // )
+            // setAntrianList(response.data.pasien)
         }
         loadPosts()
     }, [])
@@ -67,7 +66,7 @@ export default function PasienForm() {
         <>
             <section className='w-full min-h-screen bg-[#fafff6] p-12'>
             <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
-                <img src={imageGundar} alt="gundar" className='w-56 mb-[68px]' />
+                <img src={imageGundar} className='w-56 mb-[68px]' />
                 <h1 className='text-[#388E3C] text-[48px] font-semibold mb-[58px]'>Riwayat Pemeriksaan</h1>
                 <div className='flex flex-col items-center'>
                 <h3 className='mb-[9px] font-semibold text-[36px]'>Dr. Johanes Leimena</h3>
