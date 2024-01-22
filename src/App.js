@@ -19,10 +19,11 @@ import RegistrasiPegawaiBaru from './components/RegistrasiPegawaiBaru';
 import DaftarPegawai from './components/DaftarPegawai';
 import DataPoli from './components/DataPoli';
 import MonitorKegiatan from './components/MonitorKegiatan';
-import './App.css';
 import RegisterAdmin from './components/RegisterAdmin';
 import RegisterStaffPendaftaran from './components/RegistrasiStaffPendaftaran';
 import RegistrasiDokter from './components/RegistrasiDokter';
+import RiwayatKunjungan from './components/RiwayatKunjungan';
+import './App.css';
 
 // import { useEffect, useState } from 'react';
 // import PageNotFound from './utils/PageNotFound';
@@ -64,6 +65,7 @@ function App() {
           <Route path='/pendaftaranPoli/:id' element={<PendaftaranPoli/>} />
           <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
+          <Route path='/riwayatKunjungan' element={<RiwayatKunjungan/>} />
           <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
           <Route path='/profileDoktor' element={<ProfileDoktor/>} />
           <Route path='/profileAdmin' element={<ProfileAdmin/>} />
