@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import gundar from "../assets/gundar.png"
 import Footer from './Footer'
-import axios from 'axios'
+import { axios } from '../utils/axios/config.js'
 
 export default function PasienFormNot() {
 
@@ -9,7 +9,7 @@ export default function PasienFormNot() {
         event.preventDefault()
         const nik = event.target.nik.value
         const nama = event.target.nama.value
-        const tanggalLahir = event.target.tanggalLahir.value
+        const tanggal_lahir = event.target.tanggalLahir.value
         const gender = event.target.gender.checked ? "pria" : "wanita"
         const alamat = event.target.alamat.value
 
@@ -17,21 +17,15 @@ export default function PasienFormNot() {
         const requestingData = {
             nik, 
             nama,
-            tanggalLahir,
+            tanggal_lahir,
             gender,
             alamat
         }
-        axios({
-            method: "POST",
-            url: "http://localhost:3200/api/v1/resources/pasien/tambah",
-            data: requestingData
-        }).then((result) => {
-            // console.log(result.config.data)
-            const hai = JSON.parse(result.config.data)
-            console.log(hai)
-            console.log(hai.nik)
-            window.localStorage.setItem("nik", requestingData.nik)
-            window.location.replace("/pendaftaranPoli")
+        axios.post("/pasien/tambah", requestingData).then((result) => {
+            console.log(requestingData)
+            // console.log(result.config.data.nik)
+            // window.localStorage.setItem("nik", requestingData.nik)
+            window.location.replace(`pendaftaranPoli/${result.data.id}`)
         })
     }
 

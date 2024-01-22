@@ -1,8 +1,24 @@
 import images from "../exports/images"
 import imageHome from "../assets/imageHome.jpg"
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Home() {
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+  
+    if (role !== null) {
+      if (role === "dokter") {
+        window.location.replace('dokterAntrian');
+      } else if (role === "admin") {
+        window.location.replace('monitorKegiatan');
+      } else if (role === "staffPendaftaran") {
+        window.location.replace('searchNik');
+      } else {
+        window.location.replace('kickPage');
+      }
+    }
+  }, []);
 
   const clickLogin = () => {
     window.location.replace("/login")

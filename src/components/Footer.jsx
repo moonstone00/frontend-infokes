@@ -1,12 +1,39 @@
-import React from 'react'
+// ini footer untuk landing
+import React, { useEffect, useState } from 'react'
 
 export default function Footer() {
 
-    const id = localStorage.getItem("id")
+    const role = localStorage.getItem("role")
 
     const changeProfile = () => {
-        window.location.replace(`pendaftaranProfile/${id}`)
+        if (role !== undefined) {
+            if (role === "dokter") {
+                window.location.replace('dokterAntrian');
+            } else if (role === "admin") {
+                window.location.replace('monitorKegiatan');
+            } else if (role === "staffPendaftaran") {
+                window.location.replace('searchNik')
+            } else {
+                window.location.replace('kickPage')
+            }
+        }
     }
+
+    useEffect(() => {
+        const role = localStorage.getItem("role");
+      
+        if (role !== null) {
+          if (role === "dokter") {
+            window.location.replace('dokterAntrian');
+          } else if (role === "admin") {
+            window.location.replace('monitorKegiatan');
+          } else if (role === "staffPendaftaran") {
+            window.location.replace('searchNik');
+          } else {
+            window.location.replace('kickPage');
+          }
+        }
+      }, []);
 
   return (
     <footer className="bg-[#bedcbc] shadow">

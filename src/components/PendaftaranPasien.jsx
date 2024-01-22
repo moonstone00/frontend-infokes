@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import gundar from "../assets/gundar.png"
 import Footer from './Footer'
-// import { axios } from '../utils/axios/config.js'
+import { axios } from '../utils/axios/config.js'
 // import { useParams } from 'react-router-dom';
 import Modals from '../utils/Modals'
 
@@ -10,8 +10,19 @@ export default function PendaftaranPasien() {
     // const [dataNIP, setDataNIP] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [isOpenModalCart, setIsOpenModalCart] = useState(false)
-
-
+    
+    useEffect(() => {
+        axios({
+            method: "GET",
+            url: `http://localhost:3200/api/v1/resources/pasien/:nik`
+        }).then((result) => {
+            console.log(result)
+            // setDataNIP(result)
+            // console.log(result.data.pasien)
+        })
+    }, [])
+    // const nik = localStorage.getItem("nik")
+    
     // useEffect(() => {
     //     axios({
     //         method: "GET",

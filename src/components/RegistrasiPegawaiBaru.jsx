@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import gundar from "../assets/gundar.png"
-import Footer from './Footer'
+import Footer from './FooterAdmin'
 import axios from 'axios'
 
 export default function RegistrasiPegawaiBaru() {

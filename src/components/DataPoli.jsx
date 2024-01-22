@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { Container, Center, Spinner } from '@chakra-ui/react'
 import datas from '../exports/DataPasien.json'
 import imageGundar from '../assets/gundar.png'
-import Footer from './Footer'
+import Footer from './FooterAdmin'
 
 export default function DataPoli() {
 
@@ -35,7 +35,7 @@ export default function DataPoli() {
             }
             <section className='w-full min-h-screen bg-[#fafff6] p-12'>
             <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
-                <img src={imageGundar} className='w-56 mb-[68px]' />
+                <img src={imageGundar} alt="gundar" className='w-56 mb-[68px]' />
                 <h1 className='text-[#388E3C] text-[48px] font-semibold mb-[38px]'>Daftar Poli</h1>
                 <button className="bg-[#388E3C] text-white px-8 py-2 rounded-lg">Tambah Poli</button>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { axios } from "../utils/axios/config"
 import gundar from "../assets/gundar.png"
 import Footer from './Footer'
@@ -6,7 +6,6 @@ import Footer from './Footer'
 export default function Login() {
   const [nip, setNip] = useState("")
   const [password, setPassword] = useState("")
-
 
   const handleNip = (inputNip) => {
     setNip(inputNip)
@@ -20,7 +19,7 @@ export default function Login() {
     event.preventDefault()
     const requestingData = {
       nip: nip,
-      password: password
+      password: password,
     }
     // axios({
     //   method: "POST",
@@ -31,15 +30,38 @@ export default function Login() {
     //   // localStorage.setItem("tanggalLahir", result.data.nip)
     //   // window.location.replace('/searchNik')
     // })
+
     axios.post("/login", requestingData).then((result) => {
-      console.log(result)
+      console.log(result);
+      const data = result.data;
+      localStorage.setItem("id", data.id);
+      localStorage.setItem("nip", data.nip);
+      localStorage.setItem("role", data.role);
+      window.location.reload();
     })
   }
+
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+  
+    if (role !== null) {
+      if (role === "dokter") {
+        window.location.replace('dokterAntrian');
+      } else if (role === "admin") {
+        window.location.replace('monitorKegiatan');
+      } else if (role === "staffPendaftaran") {
+        window.location.replace('searchNik');
+      } else {
+        window.location.replace('kickPage');
+      }
+    }
+  }, []);
+  
 
   return (
     <div>
       <div className='flex justify-center items-center min-h-screen flex-col'>
-          <img  src={gundar} className='w-56 mb-11' />
+          <img src={gundar} alt="gundar" className='w-56 mb-11' />
 
           <div className='justify-center items-cente w-[511px] h-[400px] px-11 shadow-[0_3px_5px_5px_rgba(0,0,0,0.2)] '>
               <form onSubmit={userLogin} className="max-w-md mx-auto translate[-50%] top-[20%] relative">
