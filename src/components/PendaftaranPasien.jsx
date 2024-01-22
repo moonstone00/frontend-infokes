@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import gundar from "../assets/gundar.png"
-import Footer from './Footer'
+import Footer from './FooterStaff'
 import { axios } from '../utils/axios/config.js'
 // import { useParams } from 'react-router-dom';
 import Modals from '../utils/Modals'
@@ -13,13 +13,13 @@ export default function PendaftaranPasien({props}) {
 
 
     
-    useEffect(() => {
-        axios.get(`/resources/pasien/:nik`).then((result) => {
-            console.log(result)
-            // setDataNIP(result)
-            // console.log(result.data.pasien)
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios.get(`/resources/pasien/:nik`).then((result) => {
+    //         console.log(result)
+    //         // setDataNIP(result)
+    //         // console.log(result.data.pasien)
+    //     })
+    // }, [])
     // const nik = localStorage.getItem("nik")
     
     // useEffect(() => {
@@ -86,7 +86,7 @@ export default function PendaftaranPasien({props}) {
                         <br/>
                         hingga aplikasi ini memenuhi standar
                         <br/>
-                        <span className='font-semibold'>‘Sistem Informasi Manajemen Rumah Sakit’</span>
+                        <span className='font-semibold'>Sistem Informasi Manajemen Rumah Sakit</span>
                         <br/>
                         Kementrian Kesehatan Republik Indonesia.
                     </p>

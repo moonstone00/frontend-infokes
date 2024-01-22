@@ -1,7 +1,7 @@
 import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
 import { React, useEffect, useState } from 'react'
 import imageGundar from '../assets/gundar.png'
-import Footer from './Footer'
+import Footer from './FooterStaff'
 import { axios } from '../utils/axios/config.js'
 import { useParams } from 'react-router-dom';
 export default function PasienForm() {
@@ -22,8 +22,7 @@ export default function PasienForm() {
     }, [id]);
     
     const handleRegister = () => {
-
-      window.location.replace(`/pendaftaranPasien/${idPasien}`)
+      window.location.replace(`/pendaftaranPoli/${idPasien}`)
     }
     
 
