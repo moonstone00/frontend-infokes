@@ -37,30 +37,17 @@ export default function ProfileDoktor() {
                                 <div>{dataPasien.nip}</div>
                             </div>
                             <div className='flex items-end'>
-                                <div className='w-1/2 font-medium'>Nomor Induk</div>
-                                <div>8467398649283</div>
-                            </div>
-                            <div className='flex items-end'>
-                                <div className='w-1/2 font-medium'>Spesialis</div>
-                                <div>Penyakit Dalam</div>
-                            </div>
-                            <div className='flex items-end'>
-                                <div className='w-1/2 font-medium'>Poli</div>
-                                <div>Penyakit Dalam</div>
-                            </div>
-                            <div className='flex items-end'>
                                 <div className='w-1/2 font-medium'>Tanggal Lahir</div>
-                                <div>12/09/2002</div>
+                                <div>{dataPasien.tanggal_lahir}</div>
                             </div>
                             <div className='flex items-end'>
                                 <div className='w-1/2 font-medium'>Gender</div>
-                                <div>Laki - Laki</div>
+                                <div>{dataPasien.gender}</div>
                             </div>
                             <div className='flex items-end'>
                                 <div className='w-1/2 font-medium'>Alamat</div>
-                                <div>Bekasi</div>
+                                <div>{dataPasien.alamat}</div>
                             </div>
-
                         </div>
                     </div>
 
