@@ -25,9 +25,9 @@ export default function Footer() {
 
     if (role !== "admin") {
       if (role === "dokter") {
-        window.location.replace('dokterAntrian');
+        window.location.replace('/antrianPoli');
       } else if (role === "staffPendaftaran") {
-        window.location.replace('searchNik');
+        window.location.replace('/searchNik');
       } else {
         window.location.replace('/');
       }

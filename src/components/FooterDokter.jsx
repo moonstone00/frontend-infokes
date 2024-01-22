@@ -3,35 +3,34 @@ import React, { useEffect, useState } from 'react'
 
 export default function Footer() {
 
-    const role = localStorage.getItem("role")
+    useEffect(() => {
+        const role = localStorage.getItem("role");
 
-    const changeProfile = () => {
         if (role !== "dokter") {
             if (role === "admin") {
                 window.location.replace('/monitorKegiatan');
             } else if (role === "staffPendaftaran") {
-                window.location.replace('/searchNik')
+                window.location.replace('/searchNik');
             } else {
-                window.location.replace('/')
-            }
-        }
-    }
-
-    useEffect(() => {
-        const role = localStorage.getItem("role");
-
-        if (role !== null) {
-            if (role === "dokter") {
-                window.location.replace('dokterAntrian');
-            } else if (role === "admin") {
-                window.location.replace('monitorKegiatan');
-            } else if (role === "staffPendaftaran") {
-                window.location.replace('searchNik');
-            } else {
-                window.location.replace('kickPage');
+                window.location.replace('/');
             }
         }
     }, []);
+
+    const changeProfile = () =>  {
+        window.location.replace("/profileDoktor");
+    }
+
+    const pushToAntrian = () =>  {
+        window.location.replace("/antrianPoli");
+    }
+
+    const logOut = () =>  {
+        localStorage.removeItem("id");
+        localStorage.removeItem("nip");
+        localStorage.removeItem("role");
+        window.location.reload();
+    }
 
     return (
         <footer className="bg-[#bedcbc] shadow">
@@ -46,10 +45,13 @@ export default function Footer() {
                         <div>
                             <p onClick={changeProfile} >Profile</p>
                         </div>
+                        <div>
+                            <p onClick={logOut} >logOut</p>
+                        </div>
                         <div className='my-4'>
                             <p>Riwayat Kunjungan</p>
                         </div>
-                        <button type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Pendaftaran</button>
+                        <button onClick={pushToAntrian} type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Antrian</button>
                     </div>
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

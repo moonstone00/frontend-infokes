@@ -1,125 +1,107 @@
-import { useEffect, useState } from 'react'
-import { Container, Center, Spinner } from '@chakra-ui/react'
-import imageGundar from '../assets/gundar.png'
-import Footer from './Footer'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { Container, Center, Spinner } from '@chakra-ui/react';
+import imageGundar from '../assets/gundar.png';
+import Footer from './FooterDokter';
+import { axios } from '../utils/axios/config.js';
 
 export default function AntrianPoli() {
-
-    const [isLoading, setIsLoading] = useState(true)
-    const [antriPoliJantung, setAntriPoliJantung] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
+    const [tanggal, setDate] = useState('');
+    const [dataDokter, setDataDokter] = useState([]);
+    const [belumDiperiksa, setBelumDiperiksa] = useState([]);
+    const [sudahDiperiksa, setSudahDiperiksa] = useState([]);
 
     useEffect(() => {
         setTimeout(() => {
-            setIsLoading(false)
-        }, 2000);
+            setIsLoading(false);
+        }, 500);
 
-        // Letakkan axios disini
-        // axios({
-        //     method: "GET",
-        //     url: "http://localhost:3200/pasien"
-        // }).then((result) => {
-        //     setAntriPoliJantung(result.data.pasien)
-        // })
-    }, [])
+        const id = localStorage.getItem('id');
 
-    const handleStatus = () => {
-        window.location.replace('/treatment')
+        axios.get(`/profile/${id}`).then((result) => {
+            setDataDokter(result.data);
+        });
+
+        axios.get(`/antrianPoli/${id}`).then((result) => {
+            console.log(result.data.belum_selesai_diperiksa);
+            setBelumDiperiksa(result.data.belum_selesai_diperiksa || []);
+            setSudahDiperiksa(result.data.selesai_diperiksa || []);
+        });
+
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${currentDate.getFullYear()}`;
+        console.log(formattedDate);
+        setDate(formattedDate);
+    }, []);
+
+    // const handleStatus = () => {
+    //     window.location.replace('/treatment');
+    // };
+
+    const pushToTreatment = (data) => {
+        window.location.replace(`/treatment/${data}`)
     }
 
     return (
         <>
-
-            {
-                isLoading
-                ?
-                <Container >
-                <Center h='100vh'>
-                <Spinner
-                    thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200'
-                    color='blue.500'
-                    size='xl'
-                    />
-                </Center>
+            {isLoading ? (
+                <Container>
+                    <Center h='100vh'>
+                        <Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl' />
+                    </Center>
                 </Container>
-                :
-                null
-            }
+            ) : null}
             <section className='w-full min-h-screen bg-[#fafff6] p-12'>
                 <div className='w-full flex flex-col items-center justify-center mb-1'>
-                    <img src={imageGundar} className='w-56 mb-[28px]' />
-                    <h1 className='text-[#388E3C] text-[48px] font-semibold'>Antrian Poli {localStorage.getItem("selectedPoli")}</h1>
-                    <p className='mb-[38px] font-semibold'>23/08/2023</p>
+                    <img src={imageGundar} alt='gundar' className='w-56 mb-[28px]' />
+                    <h1 className='text-[#388E3C] text-[48px] font-semibold'>Antrian Poli {dataDokter.poli}</h1>
+                    <p className='mb-[38px] font-semibold'>{tanggal}</p>
                     <div className='flex flex-col items-center mb-12 font-semibold'>
-                        <h3 className='text-[36px]'>Dr. {localStorage.getItem("nama")}</h3>
-                        <p>1982 2318 38461 936</p>
+                        <h3 className='text-[36px]'>Dr. {dataDokter.nama}</h3>
+                        <p>{dataDokter.nip}</p>
                     </div>
                 </div>
 
                 <div>
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs uppercase bg-[#388E3C] text-white">
-                            <tr>
-                                <th scope="col" className="py-3 px-6">Antrian</th>
-                                <th scope="col" className="py-3 px-6">Nama Pasien</th>
-                                <th scope="col" className="py-3 px-6">NIP</th>
-                                <th scope="col" className="py-3 px-6">Status</th>
-                            </tr>
+                    <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
+                        <table className='w-full text-sm text-center text-gray-500 dark:text-gray-400'>
+                            <thead className='text-xs uppercase bg-[#388E3C] text-white'>
+                                <tr>
+                                    <th scope='col' className='py-3 px-6'>
+                                        Nama Pasien
+                                    </th>
+                                    <th scope='col' className='py-3 px-6'>
+                                        NIK
+                                    </th>
+                                    <th scope='col' className='py-3 px-6'>
+                                        Status
+                                    </th>
+                                </tr>
                             </thead>
-                        <tbody>
-                            {
-                            antriPoliJantung.map((data, index) => {
-
-                                // const {antrian, namaPasien, nip, status} = data
-                                const {id, nip, status, createdAt} = data
-
-
-                                if((index + 1) % 2 === 1) {
-                                return (
-                                    <tr className="bg-white text-black font-semibold">
-                                        <td className="py-4 px-6">{id}</td>
-                                        <td className="py-4 px-6">{createdAt}</td>
-                                        <td className="py-4 px-6">{nip}</td>
-                                        <td className="py-4 px-6">
-                                            {status === 'out' ? (
-                                                <button className='bg-red-700 text-white p-2 rounded-lg'>{status}</button>
-                                            ) : (
-                                                <button>{status}</button>
-                                            )
-                                        }
-                                        </td>
+                            <tbody>
+                                {belumDiperiksa.map((belum) => (
+                                    <tr key={belum.id}>
+                                        <td className='py-4 px-6'>{belum.nama}</td>
+                                        <td className='py-4 px-6'>{belum.nik}</td>
+                                        <td onClick={() => pushToTreatment(belum.id)}>Dalam Antrian</td>
                                     </tr>
-                                )
-                                } else if((index + 1) % 2 === 0) {
-                                return (
-                                    <tr className="bg-[#dedede] text-black font-semibold">
-                                        <td className="py-4 px-6">{id}</td>
-                                        <td className="py-4 px-6">{createdAt}</td>
-                                        <td className="py-4 px-6">{nip}</td>
-                                        <td className="py-4 px-6">
-                                            {status === 'out' ? 
-                                            (
-                                                <button className='bg-red-700 text-white p-2 rounded-lg' onClick={handleStatus}>{status}</button>
-                                            ) : (
-                                                <button>{status}</button>
-                                            )
-                                        }
-                                        </td>
+                                ))}
+
+                                {sudahDiperiksa.map((sudah) => (
+                                    <tr key={sudah.id}>
+                                        <td className='py-4 px-6'>{sudah.nama}</td>
+                                        <td className='py-4 px-6'>{sudah.nik}</td>
+                                        <td>Antrian Selesai</td>
                                     </tr>
-                                )
-                                }
-                            })
-                            }
-                        </tbody>
-                    </table>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             </section>
-            <Footer/>
+            <Footer />
         </>
-    )
+    );
 }

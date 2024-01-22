@@ -11,6 +11,10 @@ export default function Footer() {
     window.location.replace('/searchNik')
   }
 
+  const changeToRiwayatKunjungan = () => {
+    window.location.replace('/antrianPoli')
+  }
+
   const logOut = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('nip');
@@ -23,9 +27,9 @@ export default function Footer() {
 
     if (role !== "staffPendaftaran") {
       if (role === "dokter") {
-        window.location.replace('dokterAntrian');
+        window.location.replace('/dokterAntrian');
       } else if (role === "admin") {
-        window.location.replace('monitorKegiatan');
+        window.location.replace('/monitorKegiatan');
       } else {
         window.location.replace('/');
       }
@@ -51,7 +55,7 @@ export default function Footer() {
             </div>
             
             <div className='my-4'>
-              <p>Riwayat Kunjungan</p>
+              <p onClick={changeToRiwayatKunjungan}>Riwayat Kunjungan</p>
             </div>
             <button type="submit" onClick={changeToSearch} className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Pendaftaran</button>
           </div>

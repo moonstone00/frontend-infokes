@@ -46,7 +46,7 @@ export default function Login() {
   
     if (role !== null) {
       if (role === "dokter") {
-        window.location.replace('dokterAntrian');
+        window.location.replace('antrianPoli');
       } else if (role === "admin") {
         window.location.replace('monitorKegiatan');
       } else if (role === "staffPendaftaran") {

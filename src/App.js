@@ -66,7 +66,7 @@ function App() {
           <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
           <Route path='/riwayatKunjungan' element={<RiwayatKunjungan/>} />
-          <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
+          <Route path='/treatment/:id' element={<TreatmentGejalaDiagnosa/>} />
           <Route path='/profileDoktor' element={<ProfileDoktor/>} />
           <Route path='/profileAdmin' element={<ProfileAdmin/>} />
           <Route path='/profileStaff' element={<ProfileStaff/>} />

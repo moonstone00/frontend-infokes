@@ -2,22 +2,24 @@ import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
 import { React, useEffect, useState } from 'react'
 import { Container, Center, Spinner } from '@chakra-ui/react' 
 import imageGundar from '../assets/gundar.png'
-import Footer from './Footer'
-import axios from "axios"
+import Footer from './FooterStaff'
+import { axios } from '../utils/axios/config.js';
 
 export default function RiwayatKunjungan() {
     
     
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [antrianList, setAntrianList] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
-        // TEMPATKAN AXIOS NYA DISINI
+        axios.get("medical_record/all").then((result) => {
+            console.log(result);
+        })
 
         setTimeout(() => {
-            setIsLoading(true)
-        }, 2000);
+            setIsLoading(false)
+        }, 500);
     }, [])
 
     const recordPerPage = 5
