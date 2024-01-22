@@ -10,6 +10,7 @@ import PasienFormNot from './components/PasienFormNot';
 import TreatmentGejalaDiagnosa from './components/TreatmentGejalaDiagnosa';
 import ProfileDoktor from './components/ProfileDoktor';
 import ProfileAdmin from './components/ProfileAdmin';
+import ProfileStaff from './components/ProfileStaff';
 import AntrianPoli from './components/AntrianPoli';
 import AdminManager from './components/AdminManager';
 import EditDataDokter from './components/EditDataDokter';
@@ -60,7 +61,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/searchNik' element={<PendaftaranPasien/>} />
           <Route path='/patientList/:id' element={<PasienForm />} />
-          <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
+          <Route path='/pendaftaranPasien/:id' element={<PasienFormNot/>} />
           <Route path='/pendaftaranPoli/:id' element={<PendaftaranPoli/>} />
           <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
@@ -68,6 +69,7 @@ function App() {
           <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
           <Route path='/profileDoktor' element={<ProfileDoktor/>} />
           <Route path='/profileAdmin' element={<ProfileAdmin/>} />
+          <Route path='/profileStaff' element={<ProfileStaff/>} />
           <Route path='/antrianPoli' element={<AntrianPoli/>} />
           <Route path='/adminManager' element={<AdminManager/>} />
           <Route path='/updateDataDokter' element={<EditDataDokter/>} />
