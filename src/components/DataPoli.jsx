@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import datas from '../exports/DataPasien.json'
 import imageGundar from '../assets/gundar.png'
-import Footer from './Footer'
+import Footer from './FooterAdmin'
 
 export default function DataPoli() {
 

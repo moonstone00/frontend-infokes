@@ -7,6 +7,10 @@ export default function Footer() {
         window.location.replace('/profileAdmin')
     }
 
+    const changeToPoli = () => {
+      window.location.replace('/dataPoli')
+  }
+
     useEffect(() => {
         const role = localStorage.getItem("role");
       
@@ -33,6 +37,9 @@ export default function Footer() {
                 <div className="items-center text-sm text-black">
                     <div>
                         <p onClick={changeProfile} >Profile</p>
+                    </div>
+                    <div>
+                        <p onClick={changeToPoli} >Poli</p>
                     </div>
                     <div className='my-4'>
                         <p>Riwayat Kunjungan</p>
