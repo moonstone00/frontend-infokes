@@ -1,6 +1,6 @@
 import { useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import Footer from './Footer'
+import Footer from './FooterAdmin'
 import axios from 'axios'
 
 export default function RegistrasiDokter() {

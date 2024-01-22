@@ -1,6 +1,6 @@
 import { axios } from '../utils/axios/config'
 import React from 'react'
-import Footer from './Footer'
+import Footer from './FooterAdmin'
 
 export default function RegisterStaffPendaftaran() {
 
