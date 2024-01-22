@@ -9,6 +9,7 @@ import PendaftaranProfile from './components/PendaftaranProfile';
 import PasienFormNot from './components/PasienFormNot';
 import TreatmentGejalaDiagnosa from './components/TreatmentGejalaDiagnosa';
 import ProfileDoktor from './components/ProfileDoktor';
+import ProfileAdmin from './components/ProfileAdmin';
 import AntrianPoli from './components/AntrianPoli';
 import AdminManager from './components/AdminManager';
 import EditDataDokter from './components/EditDataDokter';
@@ -64,6 +65,7 @@ function App() {
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
           <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
           <Route path='/profileDoktor' element={<ProfileDoktor/>} />
+          <Route path='/profileAdmin' element={<ProfileAdmin/>} />
           <Route path='/antrianPoli' element={<AntrianPoli/>} />
           <Route path='/adminManager' element={<AdminManager/>} />
           <Route path='/updateDataDokter' element={<EditDataDokter/>} />

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 export default function Footer() {
 
     const changeProfile = () => {
-        window.location.reload()
+        window.location.replace('/profileAdmin')
     }
 
     useEffect(() => {
