@@ -10,6 +10,7 @@ export default function PasienForm() {
     const [isLoading, setIsLoading] = useState(true)
     const [pasienList, setPasienList] = useState([])
     const [idPasien, setIdPasien] = useState(null);
+    const [dataPasien, setDataPasien] = useState([]);
     const { id } = useParams();
     
     useEffect(() => {
@@ -19,6 +20,7 @@ export default function PasienForm() {
           // setPasienList(result.data.pasien);
           console.log('ini adalah result', result);
           setIdPasien(result.data.id);
+          setDataPasien(result.data)
         }).catch((error) => {
           console.error('Error fetching data:', error);
         });
@@ -49,7 +51,7 @@ export default function PasienForm() {
 
     const records = arrayList.slice(firstIndex, lastLength)
     const npage = Math.ceil(arrayList.length / recordsPerPage)
-    const numbers = [...Array(npage + 1).keys()].slice(1)
+    // const numbers = [...Array(npage + 1).keys()].slice(1)
 
     const nextPage = () => {
       if(currentPage !== npage) {
@@ -95,11 +97,11 @@ export default function PasienForm() {
       
           <section className='w-full min-h-screen bg-[#fafff6] p-12'>
             <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
-              <img src={imageGundar} className='w-56' />
+              <img src={imageGundar} alt="gundar" className='w-56' />
               <h1 className='text-[#388E3C] text-[48px] font-semibold mb-2'>Data Pasien</h1>
               <div className='flex flex-col items-center'>
-                <h3 className='mb-2 font-semibold text-[36px]'>Dipa Nusantara</h3>
-                <p>25/12/1998</p>
+                <h3 className='mb-2 font-semibold text-[36px]'>{dataPasien.nama}</h3>
+                <p>{dataPasien.tanggal_lahir}</p>
               </div>
               <button type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm sm:w-auto px-11 py-4 text-center mx-auto block" onClick={handleRegister} >Daftar</button>
             </div>
