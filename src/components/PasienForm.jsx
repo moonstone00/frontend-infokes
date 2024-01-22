@@ -27,7 +27,7 @@ export default function PasienForm() {
     }, [id]);
     
     const handleRegister = () => {
-      window.location.replace(`/pendaftaranPasien/${idPasien}`)
+      window.location.replace(`/pendaftaranPoli/${idPasien}`)
     }
     
 

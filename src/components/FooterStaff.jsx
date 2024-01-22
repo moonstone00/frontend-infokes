@@ -7,6 +7,17 @@ export default function Footer() {
     window.location.replace('/profileStaff')
   }
 
+  const changeToSearch = () => {
+    window.location.replace('/searchNik')
+  }
+
+  const logOut = () => {
+    localStorage.removeItem('id');
+    localStorage.removeItem('nip');
+    localStorage.removeItem('role');
+    window.location.reload();
+  }
+
   useEffect(() => {
     const role = localStorage.getItem("role");
 
@@ -34,11 +45,15 @@ export default function Footer() {
             <div>
               <p onClick={changeProfile} >Profile</p>
             </div>
+
+            <div>
+              <p onClick={logOut} >LogOut</p>
+            </div>
             
             <div className='my-4'>
               <p>Riwayat Kunjungan</p>
             </div>
-            <button type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Pendaftaran</button>
+            <button type="submit" onClick={changeToSearch} className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Pendaftaran</button>
           </div>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
