@@ -5,15 +5,24 @@ import Footer from './Footer'
 // import { useParams } from 'react-router-dom';
 import Modals from '../utils/Modals'
 
-export default function PendaftaranPasien() {
+export default function PendaftaranPasien({props}) {
 
     // const [dataNIP, setDataNIP] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [isOpenModalCart, setIsOpenModalCart] = useState(false)
 
 
-    // masih error karena nik
-
+    
+    useEffect(() => {
+        axios({
+            method: "GET",
+            url: `http://localhost:3200/api/v1/resources/pasien/:nik`
+        }).then((result) => {
+            console.log(result)
+            // setDataNIP(result)
+            // console.log(result.data.pasien)
+        })
+    }, [])
     // const nik = localStorage.getItem("nik")
     
     // useEffect(() => {

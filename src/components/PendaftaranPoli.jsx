@@ -28,7 +28,7 @@ export default function PendaftaranPoli() {
             data: requestingData
         }).then((result) => {
             console.log(result);
-            window.location.replace('/searchNik')
+            // window.location.replace('/searchNik')
         })
     }
 

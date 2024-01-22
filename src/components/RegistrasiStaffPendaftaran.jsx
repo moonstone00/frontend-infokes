@@ -31,7 +31,7 @@ export default function RegisterStaffPendaftaran() {
             window.localStorage.setItem("nip", result.data.nip)
             window.localStorage.setItem("role", result.data.role)
             
-            window.location.replace('/antrianPoli')
+            window.location.replace('/searchNik')
         }).catch((err) => {
             console.log('api error', err)
         })

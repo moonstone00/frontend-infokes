@@ -21,7 +21,12 @@ import './App.css';
 import RegisterAdmin from './components/RegisterAdmin';
 import RegisterStaffPendaftaran from './components/RegistrasiStaffPendaftaran';
 import RegistrasiDokter from './components/RegistrasiDokter';
+<<<<<<< HEAD
 import KickPage from './components/KickPage';
+=======
+import { useEffect, useState } from 'react';
+import PageNotFound from './utils/PageNotFound';
+>>>>>>> ec56855998a16e9dbcadaa72ea31a9394c02c43b
 
 
 
@@ -29,11 +34,26 @@ import KickPage from './components/KickPage';
 
 function App() {
 
+  const [isLoginAdmin, setIsLoginAdmin] = useState(false)
+  const [isLoginDokter, setIsLoginDokter] = useState(false)
+  const [isLoginStaff, setIsLoginStaff] = useState(false)
+
+  useEffect(()  => {
+    if (localStorage.getItem('role') === 'admin') {
+      setIsLoginAdmin(true);
+    }
+    if (localStorage.getItem('role') === "staffPendaftaran") {
+      setIsLoginStaff(true);
+    }
+    if (localStorage.getItem('role') === "dokter") {
+      setIsLoginDokter(true);
+    }
+  })
 
   return (
     <>
-      
       <Router>
+<<<<<<< HEAD
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/registerAdmin' element={<RegisterAdmin />} />
@@ -60,6 +80,62 @@ function App() {
           <Route path='/kickPage' element={<KickPage/>} />
         </Routes>
       </Router>
+=======
+
+          {
+            isLoginAdmin ? 
+            <Routes>
+              <Route path='/monitorKegiatan' element={<MonitorKegiatan/>} />
+              <Route path='/daftarPegawai' element={<DaftarPegawai/>} />
+              <Route path='/registrasiFormulirPegawai' element={<RegistrasiPegawaiBaru/>} />
+              <Route path='/tambahFormulirPegawai' element={<FormulirPegawaiBaru/>} />
+              <Route path='/dataPoli' element={<DataPoli/>} />
+              <Route path='/adminManager' element={<AdminManager/>} />
+              <Route path='/updateDataDokter' element={<EditDataDokter/>} />
+              <Route path='*' element={<PageNotFound/>} />
+            </Routes>
+            :
+            <Routes>
+              <Route path='/registerAdmin' element={<RegisterAdmin />} />
+            </Routes>
+          }
+
+          {
+            isLoginDokter ?
+            <Routes>
+              <Route path='/antrianPoli' element={<AntrianPoli/>} />
+              <Route path='/dokterAntrian' element={<DokterAntrian/>} />
+              <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
+              <Route path='/profileDoktor' element={<ProfileDoktor/>} />
+              <Route path='*' element={<PageNotFound/>} />
+            </Routes>
+            :
+            <Routes>
+              <Route path='/registrasiDokter' element={<RegistrasiDokter />} />
+            </Routes>
+          }
+
+          {
+            isLoginStaff ?
+            <Routes>
+              <Route path='/searchNik' element={<PendaftaranPasien/>} />
+              <Route path='/patientList' element={<PasienForm />} />
+              <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
+              <Route path='/pendaftaranPoli' element={<PendaftaranPoli/>} />
+              <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
+              <Route path='*' element={<PageNotFound/>} />
+            </Routes>
+            :
+            <Routes>
+              <Route path='/registerStaffPendaftaran' element={<RegisterStaffPendaftaran />} />
+            </Routes>
+          }
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
+      </Router>  
+>>>>>>> ec56855998a16e9dbcadaa72ea31a9394c02c43b
     </>
   );
 }
