@@ -59,7 +59,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/searchNik' element={<PendaftaranPasien/>} />
           <Route path='/patientList/:id' element={<PasienForm />} />
-          <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
+          <Route path='/pendaftaranPasien/:id' element={<PasienFormNot/>} />
           <Route path='/pendaftaranPoli/:id' element={<PendaftaranPoli/>} />
           <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
