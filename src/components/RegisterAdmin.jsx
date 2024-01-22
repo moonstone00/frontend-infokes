@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from './Footer'
 import axios from 'axios'
 
 export default function RegisterAdmin() {
+
+    useEffect(() => {
+        const role = localStorage.getItem("role");
+      
+        if (role !== null) {
+          if (role === "dokter") {
+            window.location.replace('dokterAntrian');
+          } else if (role === "admin") {
+            window.location.replace('monitorKegiatan');
+          } else if (role === "staffPendaftaran") {
+            window.location.replace('searchNik');
+          } else {
+            window.location.replace('kickPage');
+          }
+        }
+      }, []);
 
     const handleRegisterAdmin = (event) => {
         event.preventDefault()
@@ -39,9 +55,9 @@ export default function RegisterAdmin() {
         }).then((result) => {
             console.log(result);
             window.localStorage.setItem("id", result.data.id)
-            window.localStorage.setItem("nip", result.data.nip)
-            window.localStorage.setItem("role", result.data.role)
-            window.location.replace('/daftarPegawai')
+            window.localStorage.setItem("nip", result.data.nip);
+            window.localStorage.setItem("role", result.data.role);
+            window.location.reload();
         })
     }
 

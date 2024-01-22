@@ -21,6 +21,7 @@ import './App.css';
 import RegisterAdmin from './components/RegisterAdmin';
 import RegisterStaffPendaftaran from './components/RegistrasiStaffPendaftaran';
 import RegistrasiDokter from './components/RegistrasiDokter';
+import KickPage from './components/KickPage';
 
 
 
@@ -41,8 +42,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/searchNik' element={<PendaftaranPasien/>} />
           <Route path='/patientList/:id' element={<PasienForm />} />
-          <Route path='/pendaftaranPasien/:id' element={<PasienFormNot/>} />
-          <Route path='/pendaftaranPoli' element={<PendaftaranPoli/>} />
+          <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
+          <Route path='/pendaftaranPoli/:id' element={<PendaftaranPoli/>} />
           <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
           <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
@@ -56,6 +57,7 @@ function App() {
           <Route path='/dataPoli' element={<DataPoli/>} />
           <Route path='/monitorKegiatan' element={<MonitorKegiatan/>} />
           <Route path='*' element={<Login/>} />
+          <Route path='/kickPage' element={<KickPage/>} />
         </Routes>
       </Router>
     </>

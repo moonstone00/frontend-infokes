@@ -24,7 +24,7 @@ export default function AntrianPoli() {
         <>
             <section className='w-full min-h-screen bg-[#fafff6] p-12'>
             <div className='w-full flex flex-col items-center justify-center mb-1'>
-                <img src={imageGundar} className='w-56 mb-[28px]' />
+                <img src={imageGundar} alt="gundar" className='w-56 mb-[28px]' />
                 <h1 className='text-[#388E3C] text-[48px] font-semibold'>Antrian Poli Jantung</h1>
                 <p className='mb-[38px] font-semibold'>23/08/2023</p>
                 <div className='flex flex-col items-center mb-12 font-semibold'>

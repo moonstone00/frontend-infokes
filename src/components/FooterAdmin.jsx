@@ -1,36 +1,25 @@
-// ini footer untuk landing
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 export default function Footer() {
 
-    const role = localStorage.getItem("role")
+    const id = localStorage.getItem("id")
 
     const changeProfile = () => {
-        if (role !== undefined) {
-            if (role === "dokter") {
-                window.location.replace('dokterAntrian');
-            } else if (role === "admin") {
-                window.location.replace('monitorKegiatan');
-            } else if (role === "staffPendaftaran") {
-                window.location.replace('searchNik')
-            } else {
-                window.location.replace('kickPage')
-            }
-        }
+        window.location.replace(`pendaftaranProfile/${id}`)
     }
 
     useEffect(() => {
         const role = localStorage.getItem("role");
       
-        if (role !== null) {
+        if (role !== "admin") {
           if (role === "dokter") {
             window.location.replace('dokterAntrian');
-          } else if (role === "admin") {
-            window.location.replace('monitorKegiatan');
+          } else if (role === undefined) {
+            window.location.replace('/');
           } else if (role === "staffPendaftaran") {
             window.location.replace('searchNik');
           } else {
-            window.location.replace('kickPage');
+            window.location.replace('/');
           }
         }
       }, []);

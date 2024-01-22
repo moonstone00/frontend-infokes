@@ -5,11 +5,11 @@ import axios from 'axios'
 
 export default function PendaftaranPoli() {
 
-    useEffect(() => {
-    if(!localStorage.getItem("nik")) {
-        window.location.replace('/pendaftaranPasien')
-    }
-  }, []);
+//     useEffect(() => {
+//     if(!localStorage.getItem("nik")) {
+//         window.location.replace('/pendaftaranPasien')
+//     }
+//   }, []);
 
 
     const userRegister = (event) => {
