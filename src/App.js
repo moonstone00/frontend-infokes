@@ -116,8 +116,9 @@ function App() {
           {
             isLoginStaff ?
             <Routes>
+
               <Route path='/searchNik' element={<PendaftaranPasien/>} />
-              <Route path='/patientList' element={<PasienForm />} />
+              <Route path='/patientList/:id' element={<PasienForm />} />
               <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
               <Route path='/pendaftaranPoli' element={<PendaftaranPoli/>} />
               <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
