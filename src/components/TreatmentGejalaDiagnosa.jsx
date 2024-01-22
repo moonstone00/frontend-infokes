@@ -19,6 +19,10 @@ export default function TreatmentGejalaDiagnosa() {
         axios.get(`/data/from/pendaftaran/${id}`).then((result) => {
             setDataPasien(result.data)
             console.log(result);
+
+            axios.get(`/pasienList/${result.data.id_pasien}`).then((result) => {
+                console.log(result.data);
+            })
         })
 
         const idDokter = localStorage.getItem("id");
@@ -37,20 +41,24 @@ export default function TreatmentGejalaDiagnosa() {
 
 
     const handleTreatmen = (event) => {
-        event.preventDefault()
-        const gejala = event.target.gejala.value
-        const diagnosa = event.target.diagnosa.value
-        const obat = event.target.obat.value
-
+        event.preventDefault();
+        console.log(event)
+        const formData = new FormData(event.target);
+        const gejala = formData.get('gejala');
+        const diagnosa = formData.get('diagnosa');
+        const obat = formData.get('obat');
+        console.log("gejala", gejala)
         const requestingData = {
             gejala: gejala,
-            diagnosa: diagnosa,
+            diagnosis: diagnosa,
             obat: obat
         }
+        console.log(requestingData);
 
-        axios.post(`/dokte/medicalRecord/${id}`, requestingData)
+        axios.post(`/dokter/medicalRecord/${id}`, requestingData)
             .then((result) => {
                 console.log(result)
+                window.location.replace("/antrianPoli")
             })
     }
 

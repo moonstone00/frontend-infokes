@@ -24,6 +24,7 @@ export default function AntrianPoli() {
 
         axios.get(`/antrianPoli/${id}`).then((result) => {
             console.log(result.data.belum_selesai_diperiksa);
+            console.log(result.data.selesai_diperiksa);
             setBelumDiperiksa(result.data.belum_selesai_diperiksa || []);
             setSudahDiperiksa(result.data.selesai_diperiksa || []);
         });
