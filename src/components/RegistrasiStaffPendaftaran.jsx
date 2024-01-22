@@ -27,11 +27,7 @@ export default function RegisterStaffPendaftaran() {
     
         axios.post("/registration/staffPendaftaran", requestingData).then((result) => {
             console.log(result)
-            window.localStorage.setItem("id", result.data.id)
-            window.localStorage.setItem("nip", result.data.nip)
-            window.localStorage.setItem("role", result.data.role)
-            
-            window.location.replace('/searchNik')
+            window.location.replace('/monitorKegiatan')
         }).catch((err) => {
             console.log('api error', err)
         })
