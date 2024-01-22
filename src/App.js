@@ -22,31 +22,61 @@ import RegisterAdmin from './components/RegisterAdmin';
 import RegisterStaffPendaftaran from './components/RegistrasiStaffPendaftaran';
 import RegistrasiDokter from './components/RegistrasiDokter';
 
-import { useEffect, useState } from 'react';
-import PageNotFound from './utils/PageNotFound';
+// import { useEffect, useState } from 'react';
+// import PageNotFound from './utils/PageNotFound';
 
 
 function App() {
 
-  const [isLoginAdmin, setIsLoginAdmin] = useState(false)
-  const [isLoginDokter, setIsLoginDokter] = useState(false)
-  const [isLoginStaff, setIsLoginStaff] = useState(false)
+  // const [isLoginAdmin, setIsLoginAdmin] = useState(false)
+  // const [isLoginDokter, setIsLoginDokter] = useState(false)
+  // const [isLoginStaff, setIsLoginStaff] = useState(false)
 
-  useEffect(()  => {
-    if (localStorage.getItem('role') === 'admin') {
-      setIsLoginAdmin(true);
-    }
-    if (localStorage.getItem('role') === "staffPendaftaran") {
-      setIsLoginStaff(true);
-    }
-    if (localStorage.getItem('role') === "dokter") {
-      setIsLoginDokter(true);
-    }
-  }, []); 
+  // useEffect(()  => {
+  //   const role = localStorage.getItem('role')
+
+  //   if (role === 'admin') {
+  //     setIsLoginAdmin(true);
+  //   }
+  //   if (role === "staffPendaftaran") {
+  //     setIsLoginStaff(true);
+  //   }
+  //   if (role === "dokter") {
+  //     setIsLoginDokter(true);
+  //   }
+  // }, []); 
 
   return (
     <>
-      <Router>
+    {/* test */}
+    <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/registerAdmin' element={<RegisterAdmin />} />
+          <Route path='/registerStaffPendaftaran' element={<RegisterStaffPendaftaran />} />
+          <Route path='/registrasiDokter' element={<RegistrasiDokter />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/searchNik' element={<PendaftaranPasien/>} />
+          <Route path='/patientList' element={<PasienForm />} />
+          <Route path='/pendaftaranPasien' element={<PasienFormNot/>} />
+          <Route path='/pendaftaranPoli' element={<PendaftaranPoli/>} />
+          <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
+          <Route path='/dokterAntrian' element={<DokterAntrian/>} />
+          <Route path='/treatment' element={<TreatmentGejalaDiagnosa/>} />
+          <Route path='/profileDoktor' element={<ProfileDoktor/>} />
+          <Route path='/antrianPoli' element={<AntrianPoli/>} />
+          <Route path='/adminManager' element={<AdminManager/>} />
+          <Route path='/updateDataDokter' element={<EditDataDokter/>} />
+          <Route path='/tambahFormulirPegawai' element={<FormulirPegawaiBaru/>} />
+          <Route path='/registrasiFormulirPegawai' element={<RegistrasiPegawaiBaru/>} />
+          <Route path='/daftarPegawai' element={<DaftarPegawai/>} />
+          <Route path='/dataPoli' element={<DataPoli/>} />
+          <Route path='/monitorKegiatan' element={<MonitorKegiatan/>} />
+          <Route path='*' element={<Login/>} />
+        </Routes>
+      </Router>
+
+      {/* <Router>
 
           {
             isLoginAdmin ? 
@@ -100,7 +130,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
           </Routes>
-      </Router>  
+      </Router>   */}
     </>
   );
 }
