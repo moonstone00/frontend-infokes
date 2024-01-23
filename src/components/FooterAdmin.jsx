@@ -7,9 +7,9 @@ export default function Footer() {
     window.location.replace('/profileAdmin')
   }
 
-  const changeToPoli = () => {
-    window.location.replace('/dataPoli')
-  }
+  // const changeToPoli = () => {
+  //   window.location.replace('/dataPoli')
+  // }
 
   const changeToRegistrasiStaff = () => {
     window.location.replace('/registerStaffPendaftaran')
@@ -19,6 +19,16 @@ export default function Footer() {
     window.location.replace('/registrasiDokter')
   }
 
+  const pushRiwayatKunjungan = () => {
+    window.location.replace('/riwayatKunjunganAll')
+  }
+
+  const logOut = () => {
+    localStorage.removeItem('id');
+    localStorage.removeItem('nip');
+    localStorage.removeItem('role');
+    window.location.reload();
+  }
 
   useEffect(() => {
     const role = localStorage.getItem("role");
@@ -47,17 +57,20 @@ export default function Footer() {
             <div>
               <p onClick={changeProfile} >Profile</p>
             </div>
-            <div>
+            {/* <div>
               <p onClick={changeToPoli} >Poli</p>
-            </div>
+            </div> */}
             <div>
               <p onClick={changeToRegistrasiStaff} >Registrasi Staff</p>
             </div>
             <div>
               <p onClick={changeToRegistrasiDokter} >Registrasi Dokter</p>
             </div>
+              <p onClick={pushRiwayatKunjungan}>Riwayat Kunjungan</p>
+            <div>
+            </div>
             <div className='my-4'>
-              <p>Riwayat Kunjungan</p>
+              <p onClick={logOut} >LogOut</p>
             </div>
             <button type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Pendaftaran</button>
           </div>

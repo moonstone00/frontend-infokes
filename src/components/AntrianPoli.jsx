@@ -86,7 +86,7 @@ export default function AntrianPoli() {
                                     <tr key={belum.id}>
                                         <td className='py-4 px-6'>{belum.nama}</td>
                                         <td className='py-4 px-6'>{belum.nik}</td>
-                                        <td onClick={() => pushToTreatment(belum.id)}>Dalam Antrian</td>
+                                        <td className='text-red-600' onClick={() => pushToTreatment(belum.id)}>Dalam Antrian</td>
                                     </tr>
                                 ))}
 

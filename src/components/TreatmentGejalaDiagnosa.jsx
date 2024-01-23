@@ -20,7 +20,7 @@ export default function TreatmentGejalaDiagnosa() {
             setDataPasien(result.data)
             console.log(result);
 
-            axios.get(`/pasienList/${result.data.id_pasien}`).then((result) => {
+            axios.get(`/pasienID/${result.data.id_pasien}`).then((result) => {
                 console.log(result.data);
             })
         })
@@ -45,14 +45,14 @@ export default function TreatmentGejalaDiagnosa() {
         console.log(event)
         const formData = new FormData(event.target);
         const gejala = formData.get('gejala');
-        const diagnosa = formData.get('diagnosa');
+        const Diagnosis = formData.get('diagnosis');
         const obat = formData.get('obat');
-        console.log("gejala", gejala)
         const requestingData = {
             gejala: gejala,
-            diagnosis: diagnosa,
+            diagnosis: Diagnosis,
             obat: obat
         }
+
         console.log(requestingData);
 
         axios.post(`/dokter/medicalRecord/${id}`, requestingData)
@@ -142,13 +142,13 @@ export default function TreatmentGejalaDiagnosa() {
                                     <th scope="col" className="py-3 px-6">Tanggal</th>
                                     <th scope="col" className="py-3 px-6">Dokter</th>
                                     <th scope="col" className="py-3 px-6">Poli</th>
-                                    <th scope="col" className="py-3 px-6">Diagnosa</th>
+                                    <th scope="col" className="py-3 px-6">Diagnosis</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {/* {
                                 records.map((data, index) => {
-                                    const {tanggal, dokter, poli, diagnosa} = data
+                                    const {tanggal, dokter, poli, Diagnosis} = data
                                     
                                     if(index % 2 === 0) {
                                     return (
@@ -156,7 +156,7 @@ export default function TreatmentGejalaDiagnosa() {
                                             <td className="py-4 px-6">{tanggal}</td>
                                             <td className="py-4 px-6">{dokter}</td>
                                             <td className="py-4 px-6">{poli}</td>
-                                            <td className="py-4 px-6">{diagnosa}</td>
+                                            <td className="py-4 px-6">{Diagnosis}</td>
                                         </tr>
                                     )
                                     } else if(index % 2 === 1) {
@@ -165,7 +165,7 @@ export default function TreatmentGejalaDiagnosa() {
                                             <td className="py-4 px-6">{tanggal}</td>
                                             <td className="py-4 px-6">{dokter}</td>
                                             <td className="py-4 px-6">{poli}</td>
-                                            <td className="py-4 px-6">{diagnosa}</td>
+                                            <td className="py-4 px-6">{Diagnosis}</td>
                                         </tr>
                                     )
                                     }
@@ -173,22 +173,6 @@ export default function TreatmentGejalaDiagnosa() {
                                 } */}
                             </tbody>
                         </table>
-                    </div>
-
-                    <div>
-                        <div className="flex justify-end gap-44 mt-8">
-                            <div className="flex items-center">
-                                <FaAngleLeft className="text-6xl text-[#388E3C]" onClick={() => prevPage()} />
-                                <p className="text-[24px]">Prev</p>
-                            </div>
-                            <div className="flex items-center">
-                                <p className="text-[24px]">Next</p>
-                                {/* <FaAngleRight className="text-6xl text-[#388E3C]" onClick={() => nextPage()}/> */}
-                            </div>
-                            <div className="flex items-center relative">
-                                <input type="number" className="w-14 h-8 px-2 rounded-lg ml-64" style={{ border: '2.5px solid #388E3C' }} onChange={(event) => changeCPage(event.target.value)} defaultValue={1} />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>

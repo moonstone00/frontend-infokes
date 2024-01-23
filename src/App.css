@@ -1,0 +1,35 @@
+.statistik {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 4em;
+}
+
+.statistik .divider {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.statistik .content {
+  margin-left: 0.5em;
+}
+
+.statistik p {
+  font-weight: 600;
+  color: #333333;
+}
+
+.statistik h1 {
+  font-size: 4em;
+  font-weight: 900;
+  color: #388E3C;
+}
+
+.statistik h2 {
+  font-size: 3em;
+  font-weight: 900;
+  color: #388E3C;
+}

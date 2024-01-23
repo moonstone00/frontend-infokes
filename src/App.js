@@ -23,6 +23,8 @@ import RegisterAdmin from './components/RegisterAdmin';
 import RegisterStaffPendaftaran from './components/RegistrasiStaffPendaftaran';
 import RegistrasiDokter from './components/RegistrasiDokter';
 import RiwayatKunjungan from './components/RiwayatKunjungan';
+import RiwayatKunjunganAll from './components/RiwayatKunjunganAll';
+import RiwayatKunjunganAllStaff from './components/RiwayatKunjunganAllStaff';
 import './App.css';
 
 // import { useEffect, useState } from 'react';
@@ -66,6 +68,8 @@ function App() {
           <Route path='/pendaftaranProfile/:id' element={<PendaftaranProfile/>} />
           <Route path='/dokterAntrian' element={<DokterAntrian/>} />
           <Route path='/riwayatKunjungan' element={<RiwayatKunjungan/>} />
+          <Route path='/riwayatKunjunganAll' element={<RiwayatKunjunganAll/>} />
+          <Route path='/riwayatKunjunganAllStaff' element={<RiwayatKunjunganAllStaff/>} />
           <Route path='/treatment/:id' element={<TreatmentGejalaDiagnosa/>} />
           <Route path='/profileDoktor' element={<ProfileDoktor/>} />
           <Route path='/profileAdmin' element={<ProfileAdmin/>} />

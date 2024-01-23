@@ -12,7 +12,7 @@ export default function Footer() {
   }
 
   const changeToRiwayatKunjungan = () => {
-    window.location.replace('/antrianPoli')
+    window.location.replace('/riwayatKunjunganAllStaff')
   }
 
   const logOut = () => {
@@ -51,11 +51,11 @@ export default function Footer() {
             </div>
 
             <div>
-              <p onClick={logOut} >LogOut</p>
+              <p onClick={changeToRiwayatKunjungan}>Riwayat Kunjungan</p>
             </div>
             
             <div className='my-4'>
-              <p onClick={changeToRiwayatKunjungan}>Riwayat Kunjungan</p>
+              <p onClick={logOut} >LogOut</p>
             </div>
             <button type="submit" onClick={changeToSearch} className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Pendaftaran</button>
           </div>

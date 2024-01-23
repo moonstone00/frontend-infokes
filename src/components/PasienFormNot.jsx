@@ -26,8 +26,8 @@ export default function PasienFormNot() {
             gender,
             alamat
         }
-        axios.post("/pasien/tambah", requestingData).then(() => {
-            window.location.replace(`/`)
+        axios.post("/pasien/tambah", requestingData).then((result) => {
+            window.location.replace(`/pendaftaranPoli/${result.data.id}`)
         })
     }
 

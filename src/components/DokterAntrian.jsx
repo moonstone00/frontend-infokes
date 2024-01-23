@@ -9,7 +9,7 @@ export default function PasienForm() {
     const [antrianList, setAntrianList] = useState([])
     const [searchTitle, setSearchTitle] = useState("")
     const [dataDokter, setDataDokter] = useState([])
-
+    const [dataKunjungan, setDataKunjungan] = useState([])
 
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -18,23 +18,27 @@ export default function PasienForm() {
             const id = localStorage.getItem("id");
             axios.get(`profile/${id}`).then((result) => {
                 setDataDokter(result.data);
-            })
-        }
-        loadPosts()
-    }, [])
+            });
+
+            axios.get(`/dokter/pemeriksaan/list/${id}`).then((result) => {
+                console.log(result);
+                setDataKunjungan(result.data.list); // Set data to antrianList
+            });
+        };
+        loadPosts();
+    }, []);
 
     const recordPerPage = 5
     const lastLength = currentPage * recordPerPage
     const firstIndex = lastLength - recordPerPage
-    let arrayList = []
+    let arrayList = [];
 
     for (let key in antrianList) {
-        arrayList.push(antrianList[key])
-        console.log(arrayList.push(key))
-
+        arrayList.push(antrianList[key]);
+        // console.log(arrayList.push(key)); // This line is unnecessary and may cause issues
     }
 
-    console.log('this is antrianList', antrianList)
+    console.log('this is antrianList', arrayList);
 
 
     const records = antrianList.slice(firstIndex, lastLength)
@@ -63,8 +67,8 @@ export default function PasienForm() {
     return (
         <>
             <section className='w-full min-h-screen bg-[#fafff6] p-12'>
-                <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
-                    <img src={imageGundar} className='w-56 mb-[68px]' />
+                <div className='w-full flex flex-col items-center justify-center gap-4 mb-10'>
+                    <img src={imageGundar} alt="gundar" className='w-56 mb-[68px]' />
                     <h1 className='text-[#388E3C] text-[48px] font-semibold mb-[58px]'>Riwayat Pemeriksaan</h1>
                     <div className='flex flex-col items-center'>
                         <h3 className='mb-[9px] font-semibold text-[36px]'>Dr. {dataDokter.nama}</h3>
@@ -72,7 +76,7 @@ export default function PasienForm() {
                     </div>
                 </div>
 
-                <div className="flex justify-center items-center mt-12 mb-4">
+                {/* <div className="flex justify-center items-center mt-12 mb-4">
                     <form>
                         <div className="flex mr-[67px] ml-[100px]">
                             <div className="relative w-[755px]">
@@ -89,14 +93,14 @@ export default function PasienForm() {
 
                     <div>
                         <div className="flex items-center mb-4">
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">{antrianList.length}</h2>
+                            <h2 className="text-5xl text-[#388E3C] font-semibold">{dataKunjungan.length}</h2>
                             <div className="flex flex-col justify-center">
                                 <p>Pasien</p>
                                 <p>Diperiksa</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 <div>
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -110,52 +114,22 @@ export default function PasienForm() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
-                                    records
-                                        .filter((value) => {
-                                            if (searchTitle === "") {
-                                                return true;
-                                            } else if (value.status.toLowerCase().includes(searchTitle.toLocaleLowerCase())) {
-                                                return true;
-                                            }
-                                            return false;
-                                        })
-                                        .map((data, index) => {
+                                {dataKunjungan
+                                    .map((data, index) => {
+                                        const { nama_pasien, tanggal_kunjungan, diagnosis } = data;
 
-                                            const { no, namaPasien, tanggalKunjungan, diagnosa } = data
-
-                                            return (
-                                                <tr
-                                                    key={index}
-                                                    className={index % 2 === 0 ? "bg-white text-black font-semibold" : "bg-[#dedede] text-black font-semibold"}
-                                                >
-                                                    <td className="py-4 px-6">{no}</td>
-                                                    <td className="py-4 px-6">{namaPasien}</td>
-                                                    <td className="py-4 px-6">{tanggalKunjungan}</td>
-                                                    <td className="py-4 px-6">{diagnosa}</td>
-                                                </tr>
-                                            );
-                                        }
-                                        )}
-
+                                        return (
+                                            <tr key={index} className={index % 2 === 0 ? "bg-white text-black font-semibold" : "bg-[#dedede] text-black font-semibold"}>
+                                                <td className="py-4 px-6">{index +1}</td>
+                                                <td className="py-4 px-6">{nama_pasien}</td>
+                                                <td className="py-4 px-6">{tanggal_kunjungan}</td>
+                                                <td className="py-4 px-6">{diagnosis}</td>
+                                            </tr>
+                                        );
+                                    })}
                             </tbody>
-                        </table>
-                    </div>
 
-                    <div>
-                        <div className="flex justify-end gap-44 mt-8">
-                            <div className="flex items-center">
-                                <FaAngleLeft className="text-6xl text-[#388E3C]" onClick={() => prevPage()} />
-                                <p className="text-[24px]">Prev</p>
-                            </div>
-                            <div className="flex items-center">
-                                <p className="text-[24px]">Next</p>
-                                <FaAngleRight className="text-6xl text-[#388E3C]" onClick={() => nextPage()} />
-                            </div>
-                            <div className="flex items-center relative">
-                                <input type="number" className="w-14 h-8 px-2 rounded-lg ml-64" style={{ border: '2.5px solid #388E3C' }} onChange={(event) => changeCPage(event.target.value)} defaultValue={1} />
-                            </div>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </section>

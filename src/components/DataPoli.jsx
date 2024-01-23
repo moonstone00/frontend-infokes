@@ -11,7 +11,7 @@ export default function DataPoli() {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
-        }, 2000);
+        }, 500);
     }, [])
 
     return (
@@ -37,7 +37,7 @@ export default function DataPoli() {
             <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
                 <img src={imageGundar} alt="gundar" className='w-56 mb-[68px]' />
                 <h1 className='text-[#388E3C] text-[48px] font-semibold mb-[38px]'>Daftar Poli</h1>
-                <button className="bg-[#388E3C] text-white px-8 py-2 rounded-lg">Tambah Poli</button>
+                {/* <button onClick={pushTambaPoli} className="bg-[#388E3C] text-white px-8 py-2 rounded-lg">Tambah Poli</button> */}
             </div>
 
             <div className='mt-12 mb-32'>

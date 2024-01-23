@@ -25,6 +25,10 @@ export default function Footer() {
         window.location.replace("/antrianPoli");
     }
 
+    const pushToRiwayat = () =>  {
+        window.location.replace("/riwayatKunjungan");
+    }
+
     const logOut = () =>  {
         localStorage.removeItem("id");
         localStorage.removeItem("nip");
@@ -46,10 +50,10 @@ export default function Footer() {
                             <p onClick={changeProfile} >Profile</p>
                         </div>
                         <div>
-                            <p onClick={logOut} >logOut</p>
+                            <p onClick={pushToRiwayat}>Riwayat Kunjungan</p>
                         </div>
                         <div className='my-4'>
-                            <p>Riwayat Kunjungan</p>
+                            <p onClick={logOut} >logOut</p>
                         </div>
                         <button onClick={pushToAntrian} type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm w-[302px] sm:w-auto px-8 py-2.5 text-center mx-auto block">Antrian</button>
                     </div>

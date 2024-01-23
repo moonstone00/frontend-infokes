@@ -9,13 +9,19 @@ export default function MonitorKegiatan() {
     const [isLoading, setIsLoading] = useState(true)
     const [antrianList, setAntrianList] = useState([])
     const [searchTitle, setSearchTitle] = useState("")
-
+    const [dataKaryawan, setDataKaryawan] = useState([])
+    const [statistik, setDataStatistik] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
-        // axios.get("/statistik").then((result) => {
-        //     console.log(result)
-        // })
+        axios.get("/dataPegawai").then((result) => {
+            console.log(result)
+            setDataKaryawan(result.data.dataKaryawan)
+        })
+
+        axios.get("/statistik").then((result) => {
+            setDataStatistik(result.data)
+        })
 
         setTimeout(() => {
             setIsLoading(false)
@@ -81,66 +87,45 @@ export default function MonitorKegiatan() {
                         null
                 }
 
-                <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
+                <div className='w-full flex flex-col items-center justify-center gap-4 mb-10'>
                     <img src={imageGundar} alt="gundar" className='w-56 mb-[68px]' />
                     <h1 className='text-[#388E3C] text-[48px] font-semibold mb-[8px]'>Monitor Kegiatan</h1>
-                    <div className='flex flex-col items-center mb-12'>
-                        <p>Tanggal Sekarang</p>
-                    </div>
                 </div>
 
-                <div className='flex flex-col gap-12'>
-                    <div className='flex gap-[460px]'>
-                        <div className="flex items-center mb-4">
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">100</h2>
-                            <div className="flex flex-col justify-center">
-                                <p>Pasien</p>
-                                <p>Diperiksa</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center mb-4">
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">34</h2>
-                            <div className="flex flex-col justify-center">
-                                <p>Pasien</p>
-                                <p className='font-semibold'>Pasien Telah Diperiksa</p>
-                            </div>
+                <div className="statistik">
+                    <div className="divider">
+                        <h1>{statistik.total_rekam_medis}</h1>
+                        <div className="content">
+                            <p>Penanganan</p>
+                            <p>Medis</p>
                         </div>
                     </div>
 
-                    <div className='flex gap-[460px]'>
-                        <div className="flex items-center mb-4">
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">33</h2>
-                            <div className="flex flex-col justify-center">
-                                <p>Pasien</p>
-                                <p>Poli Jantung</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center mb-4">
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">34</h2>
-                            <div className="flex flex-col justify-center">
-                                <p>Pasien</p>
-                                <p className='font-semibold'>Poli Penyakit Dalam</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center mb-4">
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">34</h2>
-                            <div className="flex flex-col justify-center">
-                                <p>Pasien</p>
-                                <p className='font-semibold'>Poli Kulit</p>
-                            </div>
+                    <div className="divider">
+                        <h1>{statistik.total_pasien}</h1>
+                        <div className="content">
+                            <p>Pasien</p>
+                            <p>Ditangani</p>
                         </div>
                     </div>
 
-                    <div className='flex'>
-                        <div>
-                            <div className="flex flex-col justify-center">
-                                <p className='font-semibold'>Pemasukan</p>
-                            </div>
-                            <h2 className="text-5xl text-[#388E3C] font-semibold">120</h2>
+                    <div className="divider">
+                        <h1>{statistik.total_diagnosis}</h1>
+                        <div className="content">
+                            <p>Jenis</p>
+                            <p>Penyakit</p>
+                        </div>
+                    </div>
+
+                    <div className="divider">
+                        <h2>{statistik.total_income}</h2>
+                        <div className="content">
+                            <p>Pemasukan</p>
                         </div>
                     </div>
                 </div>
 
+{/* 
                 <div className="flex justify-center items-center mt-12 mb-4">
                     <form>
                         <div className="flex">
@@ -155,21 +140,28 @@ export default function MonitorKegiatan() {
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> */}
 
                 <div>
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
                             <thead className="text-xs uppercase bg-[#388E3C] text-white">
                                 <tr>
-                                    <th scope="col" className="py-3 px-6">No</th>
-                                    <th scope="col" className="py-3 px-6">Nama Pasien</th>
-                                    <th scope="col" className="py-3 px-6">Tanggal Kunjungan</th>
-                                    <th scope="col" className="py-3 px-6">Diagnosa</th>
+                                    <th scope="col" className="py-3 px-6">Tanggal Masuk</th>
+                                    <th scope="col" className="py-3 px-6">Nama</th>
+                                    <th scope="col" className="py-3 px-6">Posisi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {isLoading ? (
+                                {dataKaryawan.map((data) => (
+                                    <tr key={data.id}>
+                                        <td className='py-4 px-6'>{data.tanggal_masuk}</td>
+                                        <td className='py-4 px-6'>{data.nama}</td>
+                                        <td className='py-4 px-6'>{data.posisi}</td>
+                                    </tr>
+                                ))}
+
+                                {/* {isLoading ? (
                                     <h4>Loading...</h4>
                                 ) : (
                                     records
@@ -197,11 +189,11 @@ export default function MonitorKegiatan() {
                                                 </tr>
                                             );
                                         })
-                                )}
+                                )} */}
                             </tbody>
                         </table>
                     </div>
-
+{/* 
                     <div>
                         <div className="flex justify-end gap-44 mt-8">
                             <div className="flex items-center">
@@ -216,7 +208,7 @@ export default function MonitorKegiatan() {
                                 <input type="number" className="w-14 h-8 px-2 rounded-lg ml-64" style={{ border: '2.5px solid #388E3C' }} onChange={(event) => changeCPage(event.target.value)} defaultValue={1} />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             <Footer />

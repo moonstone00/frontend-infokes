@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Footer from './Footer'
-import axios from 'axios'
+import { axios } from '../utils/axios/config'
 
 export default function RegisterAdmin() {
 
@@ -48,11 +48,7 @@ export default function RegisterAdmin() {
             password,
             token
         }
-        axios({
-            method: "POST",
-            url: "http://localhost:3200/api/v1/resources/registration/admin",
-            data: requestingData
-        }).then((result) => {
+        axios.post("/registration/admin", requestingData).then((result) => {
             console.log(result);
             window.localStorage.setItem("id", result.data.id)
             window.localStorage.setItem("nip", result.data.nip);

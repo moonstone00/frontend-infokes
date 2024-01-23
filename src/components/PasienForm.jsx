@@ -1,4 +1,4 @@
-import { FaAngleLeft, FaAngleRight }  from "react-icons/fa"
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 import { Container, Center, Spinner } from '@chakra-ui/react'
 import { React, useEffect, useState } from 'react'
 import imageGundar from '../assets/gundar.png'
@@ -7,119 +7,130 @@ import { axios } from '../utils/axios/config.js'
 import { useParams } from 'react-router-dom';
 export default function PasienForm() {
 
-    const [isLoading, setIsLoading] = useState(true)
-    const [pasienList, setPasienList] = useState([])
-    const [idPasien, setIdPasien] = useState(null);
-    const [dataPasien, setDataPasien] = useState([]);
-    const { id } = useParams();
-    
-    useEffect(() => {
-      setTimeout(() => {
-        setIsLoading(false)
-        axios.get(`/pasien/${id}`).then((result) => {
-          // setPasienList(result.data.pasien);
-          console.log('ini adalah result', result);
-          setIdPasien(result.data.id);
-          setDataPasien(result.data)
-        }).catch((error) => {
-          console.error('Error fetching data:', error);
-        });
-      }, 2000);
-      // You need to use the `id` from the params in the API request
-    }, [id]);
-    
-    const handleRegister = () => {
-      window.location.replace(`/pendaftaranPoli/${idPasien}`)
+  const [isLoading, setIsLoading] = useState(true)
+  const [pasienList, setPasienList] = useState([])
+  const [idPasien, setIdPasien] = useState(null);
+  const [dataPasien, setDataPasien] = useState([]);
+  const [dataMedis, setDataMedis] = useState([])
+  const { id } = useParams();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+      axios.get(`/pasien/${id}`).then((result) => {
+        // setPasienList(result.data.pasien);
+        console.log('ini adalah result', result);
+        setIdPasien(result.data.id);
+        setDataPasien(result.data)
+        setDataMedis(result.data.data_medis)
+      }).catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    }, 2000);
+    // You need to use the `id` from the params in the API request
+  }, [id]);
+
+  const handleRegister = () => {
+    window.location.replace(`/pendaftaranPoli/${idPasien}`)
+  }
+
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const recordsPerPage = 5
+  const lastLength = currentPage * recordsPerPage
+  const firstIndex = lastLength - recordsPerPage
+  let arrayList = []
+
+  // for(let key in pasienList) {
+  //   arrayList.push(pasienList[key])
+  //   console.log(arrayList.push(key))
+  // }
+
+  for (let key in pasienList) {
+    arrayList.push(pasienList[key])
+    console.log("ini adalaah arraylist", arrayList)
+  }
+
+  const records = arrayList.slice(firstIndex, lastLength)
+  const npage = Math.ceil(arrayList.length / recordsPerPage)
+  // const numbers = [...Array(npage + 1).keys()].slice(1)
+
+  const nextPage = () => {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1)
     }
-    
+  }
 
-    const [currentPage, setCurrentPage] = useState(1)
-    const recordsPerPage = 5
-    const lastLength = currentPage * recordsPerPage
-    const firstIndex = lastLength - recordsPerPage
-    let arrayList = []
-
-    // for(let key in pasienList) {
-    //   arrayList.push(pasienList[key])
-    //   console.log(arrayList.push(key))
-    // }
-
-    for(let key in pasienList) {
-      arrayList.push(pasienList[key])
-      console.log("ini adalaah arraylist", arrayList)
+  const changeCPage = (event) => {
+    if (event < 1) {
+      setCurrentPage(1)
+    } else {
+      setCurrentPage(event)
     }
+  }
 
-    const records = arrayList.slice(firstIndex, lastLength)
-    const npage = Math.ceil(arrayList.length / recordsPerPage)
-    // const numbers = [...Array(npage + 1).keys()].slice(1)
-
-    const nextPage = () => {
-      if(currentPage !== npage) {
-        setCurrentPage(currentPage + 1)
-      }
+  const prevPage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1)
     }
+  }
 
-    const changeCPage = (event) => {
-        if(event < 1) {
-          setCurrentPage(1)
-        } else {
-          setCurrentPage(event)
-        }
-    }
+  return (
 
-    const prevPage = () => {
-      if(currentPage !== 1) {
-        setCurrentPage(currentPage - 1)
-      }
-    }
+    <>
 
-    return (
-
-      <>
-
-        {
-          isLoading
+      {
+        isLoading
           ?
           <Container >
-          <Center h='100vh'>
-          <Spinner
-              thickness='4px'
-              speed='0.65s'
-              emptyColor='gray.200'
-              color='blue.500'
-              size='xl'
+            <Center h='100vh'>
+              <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
               />
-          </Center>
+            </Center>
           </Container>
           :
           null
-        }
-      
-          <section className='w-full min-h-screen bg-[#fafff6] p-12'>
-            <div className='w-full flex flex-col items-center justify-center gap-4 mb-3'>
-              <img src={imageGundar} alt="gundar" className='w-56' />
-              <h1 className='text-[#388E3C] text-[48px] font-semibold mb-2'>Data Pasien</h1>
-              <div className='flex flex-col items-center'>
-                <h3 className='mb-2 font-semibold text-[36px]'>{dataPasien.nama}</h3>
-                <p>{dataPasien.tanggal_lahir}</p>
-              </div>
-              <button type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm sm:w-auto px-11 py-4 text-center mx-auto block" onClick={handleRegister} >Daftar</button>
-            </div>
+      }
 
-            <div>
-              <p className='text-[20px] font-bold text-[#388E3C] mb-1'>Riwayat Kunjungan</p>
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                      <thead className="text-xs uppercase bg-[#388E3C] text-white">
-                        <tr>
-                            <th scope="col" className="py-3 px-6">Tanggal</th>
-                            <th scope="col" className="py-3 px-6">Dokter</th>
-                            <th scope="col" className="py-3 px-6">Poli</th>
-                            <th scope="col" className="py-3 px-6">Diagnosa</th>
-                        </tr>
-                      </thead>
-                    <tbody>
-                      {
+      <section className='w-full min-h-screen bg-[#fafff6] p-12'>
+        <div className='w-full flex flex-col items-center justify-center gap-4 mb-10'>
+          <img src={imageGundar} alt="gundar" className='w-56' />
+          <h1 className='text-[#388E3C] text-[48px] font-semibold mb-2'>Data Pasien</h1>
+          <div className='flex flex-col items-center'>
+            <h3 className='mb-2 font-semibold text-[36px]'>{dataPasien.nama}</h3>
+            <p>{dataPasien.tanggal_lahir}</p>
+          </div>
+          <button type="submit" className="text-white bg-[#388E3C] focus:outline-none font-medium rounded-lg text-sm sm:w-auto px-11 py-4 text-center mx-auto block" onClick={handleRegister} >Daftar</button>
+        </div>
+
+        <div>
+          <p className='text-[20px] font-bold text-[#388E3C] mb-1'>Riwayat Kunjungan</p>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+              <thead className="text-xs uppercase bg-[#388E3C] text-white">
+                <tr>
+                  <th scope="col" className="py-3 px-6">Tanggal</th>
+                  <th scope="col" className="py-3 px-6">Dokter</th>
+                  <th scope="col" className="py-3 px-6">Poli</th>
+                  <th scope="col" className="py-3 px-6">Diagnosis</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataMedis.map((data) => (
+                  <tr key={data.id}>
+                    <td className='py-4 px-6'>{data.tanggal}</td>
+                    <td className='py-4 px-6'>{data.dokter}</td>
+                    <td className='py-4 px-6'>{data.poli}</td>
+                    <td className='py-4 px-6'>{data.diagnosis}</td>
+                  </tr>
+                ))}
+
+                {/* {
                         records.map((pasien, index) => {
                           console.log(index)
                           // const {tanggal, dokter, poli, diagnosa} = pasien
@@ -136,29 +147,13 @@ export default function PasienForm() {
                             </tr>
                           )
                         })
-                      }
-                    </tbody>
-                </table>
-              </div>
-
-              <div>
-                <div className="flex justify-end gap-44 mt-8">
-                  <div className="flex items-center">
-                    <FaAngleLeft className="text-6xl text-[#388E3C]" onClick={() => prevPage()} />
-                    <p className="text-[24px]">Prev</p>
-                  </div>
-                  <div className="flex items-center">
-                    <p className="text-[24px]">Next</p>
-                    <FaAngleRight className="text-6xl text-[#388E3C]" onClick={() => nextPage()}/>
-                  </div>
-                  <div className="flex items-center relative">
-                      <input type="number" className="w-14 h-8 px-2 rounded-lg ml-64" style={{border: '2.5px solid #388E3C'}} onChange={(event) => changeCPage(event.target.value)} defaultValue={1} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <Footer/>
-      </>
-    )
+                      } */}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </>
+  )
 }
